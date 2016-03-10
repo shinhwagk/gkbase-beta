@@ -1,1 +1,2 @@
-GET     /                               controllers.Application.index()
+GET     /                controllers.GNote.index()
+GET     /app/note/index  controllers.GNote.index()

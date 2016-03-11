@@ -1,0 +1,6 @@
+@import models.gnote.dao.entity.Content;
+@(list:List[Content])
+
+@for(i <- list){
+  @i.getId
+}

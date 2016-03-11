@@ -14,6 +14,7 @@ create table g_note.category (
 );
 --测试数据
 insert into g_note.category values(3,'backup',null,now(),now());
+insert into g_note.category values(4,'backup',3,now(),now());
 
 --note内容
 create table g_note.content (
@@ -27,6 +28,10 @@ create table g_note.content (
   foreign key (category_id) REFERENCES g_note.category(id),
   foreign key (document_id) REFERENCES g_note.document(id)
 );
+--测试数据
+insert into g_note.content values(1,'abc1','ccc1',2,now(),now(),null);
+insert into g_note.content values(2,'abc2','cc2c',2,now(),now(),null);
+insert into g_note.content values(3,'ab3c','cdcc',2,now(),now(),null);
 
 --文档编号
 create table g_note.document(

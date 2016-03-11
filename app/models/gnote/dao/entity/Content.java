@@ -19,6 +19,16 @@ public class Content {
 
     }
 
+    public Content(int id, String content_1, String content_2, int category_id, Date createdata, Date updatedata, int document_id) {
+        this.id = id;
+        this.content_1 = content_1;
+        this.content_2 = content_2;
+        this.category_id = category_id;
+        this.createdata = createdata;
+        this.updatedata = updatedata;
+        this.document_id = document_id;
+    }
+
     public int getId() {
         return id;
     }

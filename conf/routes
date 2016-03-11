@@ -1,2 +1,1 @@
-GET     /                controllers.GNote.index()
-GET     /app/note/index  controllers.GNote.index()
+GET     /app/note/:id  controllers.GNote.index(id:Int)

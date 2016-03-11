@@ -1,5 +1,26 @@
-@import models.gnote.dao.entity.Category;
-@(navigation:List[Category])
-@for(n <- navigation){
-  @n.getName()
+@import models.gnote.dao.entity._;
+@(nav:List[Category],list:List[Category],content_list:List[Content])
+
+@main("a"){
+@navigation(nav)
+<br>
+@breadcrumb(list)
+<br>
+
+<br>
+<table border="1" style="width:100%">
+  <tr>
+    <td>@editDir()</td>
+    <td>@editContent()</td>
+  <tr>
+    <td>
+      @directory(list)
+    </td>
+    <td>
+      @content(content_list)
+    </td>
+  </tr>
+</table>
 }
+
+

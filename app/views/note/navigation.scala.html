@@ -1,1 +1,6 @@
-nav
+@import models.gnote.dao.entity.Category;
+@(nav:List[Category])
+
+@for(i<-nav){
+<a href="@routes.GNote.index(i.getId)">@i.getName</a>
+}

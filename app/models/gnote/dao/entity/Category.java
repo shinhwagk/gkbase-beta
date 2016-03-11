@@ -1,5 +1,7 @@
 package models.gnote.dao.entity;
 
+import play.data.validation.Constraints;
+
 import java.sql.Date;
 
 /**
@@ -7,6 +9,7 @@ import java.sql.Date;
  */
 public class Category {
     private int id;
+    @Constraints.Required
     private String name;
     private int father_id;
     private Date createdata;

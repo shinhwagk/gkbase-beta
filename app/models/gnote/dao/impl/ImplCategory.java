@@ -54,15 +54,17 @@ public class ImplCategory extends Category {
         try {
             conn = DB.getConnection();
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select id,name,father_id from g_note.category");
+            rs = stmt.executeQuery("select id,name,ifnull(father_id,0) father_id from g_note.category");
             while (rs.next()) {
-                System.out.println("abc");
                 Category tabc = new Category();
                 tabc.setId(rs.getInt(1));
                 tabc.setName(rs.getString(2));
                 tabc.setFather_id(rs.getInt(3));
                 all.add(tabc);
             }
+            rs.close();
+            stmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,4 +76,5 @@ public class ImplCategory extends Category {
         a.setId(1);
         System.out.println(a.getId());
     }
+
 }

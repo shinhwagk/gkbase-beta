@@ -6,10 +6,10 @@ import slick.driver.MySQLDriver.api._
 /**
   * Created by zhangxu on 16/3/14.
   */
-case class Content(id: Int, content_1: String, content_2: String, category_id: Int, createdata: Date, updatedata: Date, document_id:)
+case class Content(id: Int, content_1: String, content_2: String, category_id: Int, createdata: Date, updatedata: Date)
 
 class Contents(tag: Tag) extends Table[Content](tag, "content") {
-  def * = (id.?, content_1, content_2, category_id, createdata, updatedata) <>(Content.tupled, Content.unapply)
+  def * = (id, content_1, content_2, category_id, createdata, updatedata) <>(Content.tupled, Content.unapply)
 
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 

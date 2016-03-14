@@ -2,5 +2,5 @@
 @(list:List[Category])
 
 @for(i <- list){
-<a href="@routes.GNote.index(i.getId)">@i.getName</a><br>
+<a href="@routes.GNote.index(i.id)">@i.name</a><br>
 }

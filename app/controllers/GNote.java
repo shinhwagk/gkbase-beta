@@ -21,7 +21,8 @@ public class GNote extends Controller {
         List<Category> list = a.findAll().stream().filter(p -> p.getFather_id() == id).collect(Collectors.toList());
         List<Content> Content_list = b.findAll().stream().filter(p -> p.getCategory_id() == id).collect(Collectors.toList());
 
-        return ok(views.html.note.index.render(topNav, list,Content_list));
+        return ok(views.html.note.index.render(topNav, list, Content_list));
+
     }
 }
 

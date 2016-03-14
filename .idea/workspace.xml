@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3de276ac-c0aa-409c-a115-b509b89f786d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_typesafe_play_play_slick_2_11_1_1_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_typesafe_slick_slick_2_11_3_1_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_typesafe_slick_slick_hikaricp_2_11_3_1_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_zaxxer_HikariCP_java6_2_3_7_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/Application.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/GKNote.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/gnote/dao/entity/Category.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/gnote/dao/entity/Content.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/gnote/dao/entity/Document.scala" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/Application.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/GNote.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/gnote/dao/entity/Category.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/gnote/dao/entity/Content.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/gnote/dao/entity/Document.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/gnote/dao/impl/ImplCategory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/gnote/dao/impl/ImplContent.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_javassist_javassist_3_18_2_GA_jar.xml" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__org_javassist_javassist_3_19_0_GA_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/root-build.iml" afterPath="$PROJECT_DIR$/.idea/modules/root-build.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/root.iml" afterPath="$PROJECT_DIR$/.idea/modules/root.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/application.conf" afterPath="$PROJECT_DIR$/conf/application.conf" />
-    </list>
+    <list default="true" id="3de276ac-c0aa-409c-a115-b509b89f786d" name="Default" comment="" />
     <list id="a6eb0c93-3031-4e25-9b02-380e18581087" name="Rejected commit: Default" comment="" />
     <ignored path="gkbase-beta.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1038,7 +1014,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>

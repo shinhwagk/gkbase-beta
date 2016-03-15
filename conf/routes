@@ -1,3 +1,5 @@
-GET     /app/note/:id  controllers.GNote.index(id:Int)
-
+#app note index
+GET /app/note/index controllers.Application.index()
+GET /app/note/category/:id controllers.Application.c(id:Int)
+#GET     /app/note/:id  controllers.Application.index(id:Int)
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

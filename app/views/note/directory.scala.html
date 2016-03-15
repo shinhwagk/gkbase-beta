@@ -1,6 +1,3 @@
 @import models.gnote.dao.entity.Category;
 @(list:List[Category])
 
-@for(i <- list){
-<a href="@routes.GNote.index(i.id)">@i.name</a><br>
-}

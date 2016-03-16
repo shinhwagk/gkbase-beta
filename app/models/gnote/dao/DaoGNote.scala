@@ -14,12 +14,15 @@ import slick.lifted.TableQuery
 class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
   val db = dbConfig.db
-
   val tableCategory = TableQuery[Categorys]
   val tableContent = TableQuery[Contents]
 
+  //导航顶部数据(一级)
   def navigationTopOne = db.run(tableCategory.filter(_.father_id === null.asInstanceOf[Option[Int]]).to[List].result)
+  //导航顶部数据(二级)
   def navigationTopTwo = db.run(tableCategory.filter(_.father_id === 1).to[List].result)
+  //目录列表
+  def category(id:Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 
-  def getcategory(id:Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
+  def content(id:Int) = db.run(tableContent.filterNot(_.category_id === id).to[List].result)
 }

@@ -1,26 +1,71 @@
-@import models.gnote.dao.entity._;
-@(nav:List[Category],list:List[Category],content_list:List[Content])
+@import models.gnote.dao.ViewsDataGNote
+@(data:ViewsDataGNote)
 
 @main("a"){
-@navigation(nav)
-<br>
-@breadcrumb(list)
-<br>
+<div class="row">
+  <div class="col-lg-12">
+    @note.navigation(data.navOne)
+  </div>
+</div>
+<div class="row ">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Library</a></li>
+      <li class="active">Data</li>
+    </ol>
+  </div>
+</div>
 
-<br>
-<table border="1" style="width:100%">
-  <tr>
-    <td>@editDir()</td>
-    <td>@editContent()</td>
-  <tr>
-    <td>
-      @directory(list)
-    </td>
-    <td>
-      @content(content_list)
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-lg-2">
+    @note.directory(data.dirs)
+  </div>
+  <div class="col-lg-10">
+    @note.content(data.conts)
+  </div>
+</div>
+<br><br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1<br>
+1
+1
 }
-
-

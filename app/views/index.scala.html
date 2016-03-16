@@ -1,3 +1,9 @@
+@import models.gnote.dao.entity.Category;
+@(nav:List[Category])
 @main("abc"){
-    abc
+<ul class="nav nav-tabs">
+    @for(i <- nav){
+    <li role="presentation" class="active"><a href="#">@i</a></li>
+    }
+</ul>
 }

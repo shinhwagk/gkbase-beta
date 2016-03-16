@@ -1,6 +1,8 @@
-@import models.gnote.dao.entity.Content;
-@(list:List[Content])
+@import models.gnote.dao._
+@(conts:HtmlDataContent)
 
-@for(i <- list){
-  @i.id
+@for(c <- conts.conts){
+  @c.content_1
+  @c.content_2
+<br>
 }

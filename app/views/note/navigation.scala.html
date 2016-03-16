@@ -1,6 +1,7 @@
-@import models.gnote.dao.entity.Category;
-@(nav:List[Category])
-
-@for(i <- nav){
-@i
-}
+@import models.gnote.dao._
+@(dirs:HtmlDataNavigationTopOne)
+<ul class="nav nav-pills nav-justified navbar-fixed-top">
+  @for(i <- dirs.navOne){
+  <li role="presentation" class="active"><a href="#">@i.name</a></li>
+  }
+</ul>

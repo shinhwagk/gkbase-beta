@@ -8,7 +8,6 @@ import slick.driver.MySQLDriver.api._
   */
 case class Category(id: Int, name: String, father_id: Option[Int], createdate: Date, updatedata: Date)
 
-
 class Categorys(tag: Tag) extends Table[Category](tag, "category") {
   def * = (id, name, father_id.?, createdata, updatedata)<>(Category.tupled, Category.unapply)
 

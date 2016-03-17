@@ -31,9 +31,9 @@ $(function(){
     		url: jsRoutes.controllers.gNote.dirAdd().url,
     		data: $('form#dir-add-form').serialize(),
             success: function(msg){
-                alert($('form#dir-add-form').serialize())
+//                alert($('form#dir-add-form').serialize())
                 $("#dir-add-modal").modal('hide');
-                alert($('form#dir-add-form'))
+//                alert($('form#dir-add-form'))
                 location.href = jsRoutes.controllers.gNote.c(1).url
             },
     		error: function(error) {

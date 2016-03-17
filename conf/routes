@@ -1,4 +1,16 @@
 #app note index
-GET /app/note/cty/:id controllers.gNote.c(id:Int)
+#Create -> Post
+#Read   -> Get
+#Update -> Put
+#Delete -> Delete
+
+GET     /app/note/id/:id        controllers.gNote.c(id:Int)
+DELETE  /app/note/id/:id        controllers.gNote.delete(id:Int)
+PUT     /app/note/id/:id/:name  controllers.gNote.update(id:Int,name:String)
+POST    /app/note/id/:id/:name  controllers.gNote.update(id:Int,name:String)
+
+
+
+PUT /app/note/id/:id controllers.gNote.add(id:Int)
 #GET     /app/note/:id  controllers.Application.index(id:Int)
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,27 @@
+@(id:Int)
+
+<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#dir-add-button" data-whatever="@id">ADD
+</button>
+<div class="modal fade" id="dir-add-button" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New Directory Name:</h4>
+            </div>
+            <div class="modal-body">
+                <form id="contact">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Name:</label>
+                        <input name="dir-name" type="text" class="form-control" id="recipient-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" id = "ooo" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,13 +4,18 @@
 #Update -> Put
 #Delete -> Delete
 
-GET     /app/note/id/:id        controllers.gNote.c(id:Int)
-DELETE  /app/note/id/:id        controllers.gNote.delete(id:Int)
-PUT     /app/note/id/:id/:name  controllers.gNote.update(id:Int,name:String)
-POST    /app/note/id/:id/:name  controllers.gNote.update(id:Int,name:String)
+GET      /app/note/id/:id           controllers.gNote.c(id:Int)
+#DELETE  /app/note/id/:id           controllers.gNote.delete(id:Int)
+#PUT     /app/note/id/:id/:name     controllers.gNote.update(id:Int,name:String)
+POST     /app/note/dir              controllers.gNote.dirAdd()
+#(id:Int,name:String)
+#POST    /app/note/content          controllers.gNote.update(id:Int,name:String)
 
 
-
-PUT /app/note/id/:id controllers.gNote.add(id:Int)
+# Javascript routing
+#GET /javascriptRoutes    controllers.gNote.javascriptRoutes
 #GET     /app/note/:id  controllers.Application.index(id:Int)
+
+
+
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

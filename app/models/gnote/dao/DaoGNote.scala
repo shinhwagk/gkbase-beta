@@ -1,5 +1,6 @@
 package models.gnote.dao
 
+import java.util.Date
 import javax.inject.Inject
 
 import models.gnote.dao.entity._
@@ -24,5 +25,7 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   //目录列表
   def category(id:Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 
-  def content(id:Int) = db.run(tableContent.filterNot(_.category_id === id).to[List].result)
+  def content(id:Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)
+
+  def addDir(id:Int,name:String) = db.run(DBIO.seq(tableCategory.map(c=>(c.name,c.father_id,c.createdata,c.updatedata)) +=(name,id,new java.sql.Date(new Date().getTime),new java.sql.Date(new Date().getTime))));
 }

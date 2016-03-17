@@ -9,16 +9,41 @@
 //})
 
 
-$(function(){$('#dir-add-button').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget)
-  var recipient = button.data('whatever')
-  var modal = $(this)
+$(function(){$('#dir-add-button-open').on('show.bs.modal', function (event) {
+//  var button = $(event.relatedTarget)
+//  var recipient = button.data('whatever')
+//  var modal = $(this)
+//  modal.find(".modal-body input[name='dir-add-name-val']").val('bbb')
 //  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find(".modal-body input[name='dir-name']").val('bbb')
-
-  //event.preventDefault();
- // alert($('#ccc').serialize())
+//event.preventDefault();
+// alert($('#ccc').serialize())
 })})
+$(function(){
+    $("#dir-add-button-success").click(function(){
+//        alert(jsRoutes.controllers.gNote.dirAdd().url)
+//        $.post(
+//        jsRoutes.controllers.gNote.dirAdd().url,
+//        function(data) {
+//              alert(data);
+//    })
+        $.ajax({
+            type: "POST",
+    		url: jsRoutes.controllers.gNote.dirAdd().url,
+    		data: $('form#dir-add-form').serialize(),
+            success: function(msg){
+                alert($('form#dir-add-form').serialize())
+                $("#dir-add-modal").modal('hide');
+                alert($('form#dir-add-form'))
+                location.href = jsRoutes.controllers.gNote.c(1).url
+            },
+    		error: function(error) {
+                alert(error.status);
+                alert(error.readyState);
+                alert(error.textStatus);
+            },
+        });
+    });
+});
 
 
 /*
@@ -35,8 +60,3 @@ alert($('#ccc').serialize())
 })})
 
 */
-$(function(){
-    $("#ooo").click(function(){
-    alert($('form#contact').serialize())
-    })
-})

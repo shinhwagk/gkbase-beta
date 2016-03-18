@@ -1,5 +1,6 @@
 package models.gnote.dao
 
+import java.sql.Connection
 import javax.inject.Inject
 
 import models.gnote.dao.entity.{Content, Category}

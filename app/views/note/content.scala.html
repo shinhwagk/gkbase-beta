@@ -1,8 +1,18 @@
 @import models.gnote.dao._
 @(conts:HtmlDataContent)
 
-@for(c <- conts.conts){
-  @c.content_1
-  @c.content_2
-<br>
-}
+
+<table class="table table-condensed">
+    @for(c <- conts.conts){
+
+    <tr>
+        <td>@c.content_1</td>
+        <td>@c.content_2</td>
+        <td>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="@c.id">
+            </label>
+        </td>
+    </tr>
+    }
+</table>

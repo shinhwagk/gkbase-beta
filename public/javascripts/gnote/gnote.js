@@ -36,6 +36,7 @@ $(function(){
 //                alert($('form#dir-add-form'))
                 location.href = jsRoutes.controllers.gNote.c(1).url
             },
+
     		error: function(error) {
                 alert(error.status);
                 alert(error.readyState);
@@ -44,6 +45,10 @@ $(function(){
         });
     });
 });
+function abc(){
+    alert($('input[name=inlineRadioOptions]:checked').val())
+
+}
 
 
 /*

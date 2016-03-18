@@ -2,6 +2,6 @@
 @(dirs:HtmlDataNavigationTopOne)
 <ul class="nav nav-pills nav-justified navbar-fixed-top">
   @for(i <- dirs.navOne){
-  <li role="presentation" class="active"><a href="#">@i.name</a></li>
+  <li role="presentation" class="active"><a href="@routes.gNote.c(i.id)">@i.name</a></li>
   }
 </ul>

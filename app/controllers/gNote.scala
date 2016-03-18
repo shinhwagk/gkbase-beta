@@ -18,7 +18,6 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   def c(id: Int) = Action.async { implicit request =>
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
-
   //  def dirAdd(id: Int, name: String) = Action {
   def dirAdd = Action.async { implicit request =>
     val data2 = request.body.asFormUrlEncoded.get

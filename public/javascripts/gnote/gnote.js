@@ -47,6 +47,7 @@ $(function(){
 });
 function abc(){
     alert($('input[name=inlineRadioOptions]:checked').val())
+    
 }
 
 

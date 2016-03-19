@@ -46,8 +46,7 @@ $(function(){
     });
 });
 function abc(){
-    alert($('input[name=inlineRadioOptions]:checked').val())
-    
+    alert($('input[name=inlineRadioOptions]:checked').val());
 }
 
 

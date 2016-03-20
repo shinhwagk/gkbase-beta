@@ -13,15 +13,23 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
 
   def getViewsDataGNote(id: Int) = for {
     navOne <- daoGNote.navigationTopOne
-    navTwo <- daoGNote.navigationTopTwo
+    navTwo <- daoGNote.navigationTopTwo(id)
     dirs <- daoGNote.category(id)
     conts <- daoGNote.content(id)
-  } yield ViewsDataGNote(HtmlDataNavigationTopOne(navOne), HtmlDataNavigationTopTwo(navTwo), HtmlDataDirectory(dirs), HtmlDataContent(conts))
+  } yield ViewsDataGNote(
+    id,
+    HtmlDataNavigationTopOne(navOne),
+    HtmlDataNavigationTopTwo(navTwo),
+    HtmlDataDirectory(dirs),
+    HtmlDataContent(conts))
 }
 
-case class ViewsDataGNote(navOne: HtmlDataNavigationTopOne, navTwo: HtmlDataNavigationTopTwo, dirs: HtmlDataDirectory, conts: HtmlDataContent)
+case class ViewsDataGNote(id:Int,navOne: HtmlDataNavigationTopOne, navTwo: HtmlDataNavigationTopTwo, dirs: HtmlDataDirectory, conts: HtmlDataContent)
 
-case class HtmlDataNavigationTopOne(navOne:List[Category])
-case class HtmlDataNavigationTopTwo(navTwo:List[Category])
-case class HtmlDataDirectory(dirs:List[Category])
-case class HtmlDataContent(conts:List[Content])
+case class HtmlDataNavigationTopOne(navOne: List[Category])
+
+case class HtmlDataNavigationTopTwo(navTwo: List[Category])
+
+case class HtmlDataDirectory(dirs: List[Category])
+
+case class HtmlDataContent(conts: List[Content])

@@ -2,28 +2,20 @@
 @(data:ViewsDataGNote)(implicit req: RequestHeader)
 
 @main("a"){
-<div class="row">
-    <div class="col-lg-12">
-        @note.navigation(data.navOne)
-    </div>
-</div>
+@note.navigation(data.navOne)
 <div class="row ">
     <div class="col-lg-12">
-        <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
-        </ol>
+        @breadcrumb(data.id)
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-6">
-        @editDir()
-    </div>
-    <div class="col-lg-6">
-        @editContent()
-    </div>
-</div>
+<!--<div class="row">-->
+    <!--<div class="col-lg-6">-->
+        <!--&lt;!&ndash;editDir(data.id)&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="col-lg-6">-->
+        <!--editContent(data.id)-->
+    <!--</div>-->
+<!--</div>-->
 <div class="row">
     <div class="col-lg-2">
         @note.directory(data.dirs)

@@ -17,7 +17,39 @@ $(function(){$('#dir-add-button-open').on('show.bs.modal', function (event) {
 //  modal.find('.modal-title').text('New message to ' + recipient)
 //event.preventDefault();
 // alert($('#ccc').serialize())
+
 })})
+
+//远端模态框---重置
+$(function(){$('#content-update-modal').on("hidden.bs.modal", function (e) {
+      $(e.target).removeData("bs.modal").find(".modal-content").empty();
+  });
+})
+
+function content_update_exec(){
+//var button = $(event.relatedTarget) // Button that triggered the modal
+//  var recipient = button.data('whatever')
+//  alert(recipient)
+    var inputs = $("#content-update-modal").find(".modal-body").find("input")
+    var d_id = inputs[1].value
+//    var content_2 = textareas[1].value
+//alert()
+        $.ajax({
+            type: "POST",
+    		url: "/app/note/content/put",
+    		data: $('form#content-update-form').serialize(),
+            success: function(msg){
+                $("#content-update-modal").modal('hide');
+                location.href = "/app/note/id/" + d_id
+            },
+    		error: function(error) {
+                alert(error.status);
+                alert(error.readyState);
+                alert(error.textStatus);
+            },
+        });
+}
+
 $(function(){
     $("#dir-add-button-success").click(function(){
 //        alert(jsRoutes.controllers.gNote.dirAdd().url)
@@ -45,10 +77,52 @@ $(function(){
         });
     });
 });
-function abc(){
-    alert($('input[name=inlineRadioOptions]:checked').val());
-}
 
+
+$(document).ready(function(){
+  $("button#content-add").click(function(){
+   alert(11)
+
+  });
+});
+
+//content delete 废弃
+//$(document).ready(function(){
+//  $("button#content_delete").click(function(){
+//   var dir_id =$("input[name=dir_id]").val()
+//   var content_id = $("input[name='content_radio'][type='radio']:checked").val()
+//    $.ajax({
+//        type: "DELETE",
+//       	url: "/app/note/content/"+ content_id,
+//       	success: function(msg){
+//            location.href = "/app/note/id/" + dir_id
+//        },
+//        error: function(error) {
+//            alert(error.status);
+//            alert(error.readyState);
+//            alert(error.textStatus);
+//        },
+//    });
+//  });
+//});
+//废弃删除
+//$(document).ready(function(){
+//  $("button#dir_delete").click(function(){
+//   var dir_id =$("input[name=dir_id]").val()
+//    $.ajax({
+//        type: "DELETE",
+//       	url: "/app/note/dir/"+ dir_id,
+//       	success: function(msg){
+//            location.href = "/app/note/id/" + dir_id
+//        },
+//        error: function(error) {
+//            alert(error.status);
+//            alert(error.readyState);
+//            alert(error.textStatus);
+//        },
+//    });
+//  });
+//});
 
 /*
 $(function(){$('#dir-add-button').on('show.bs.modal', function (event) {
@@ -64,3 +138,9 @@ alert($('#ccc').serialize())
 })})
 
 */
+
+$(document).ready(function(){
+    $("button#content-update-button-success").click(function(){
+        alert('adf')
+    })
+})

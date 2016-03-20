@@ -5,14 +5,12 @@
 <table class="table table-condensed">
     @for(c <- conts.conts){
 
-    <tr>
-        <td>@c.content_1</td>
-        <td>@c.content_2</td>
-        <td>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="@c.id">
-            </label>
-        </td>
+    <td>@c.content_1</td>
+    <td>@c.content_2</td>
+    <td>
+        <a data-toggle="modal" href="@routes.gNote.get_content(c.id)" data-target="#content-update-modal">更新</a>
+        <a href="@routes.gNote.delete_content(c.id)">删除</a>
+    </td>
     </tr>
     }
 </table>

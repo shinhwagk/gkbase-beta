@@ -1,48 +1,7 @@
 @(id:Int)
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle btn-xs" type="button" id="dir_edit_group" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="true">
-        Content Option
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dir_edit_group">
-        <li>
-            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#content-add-modal" data-whatever="@id">ADD</button>
-        </li>
-        <li><a href="javascript:abc()">更新</a></li>
-        <li><a href="#">移动</a></li>
-        <li><a href="#">删除</a></li>
-    </ul>
-</div>
+@import helper._
+@helper.form(action = routes.gNote.add_content) {
+<input name="dir_id" value="@id" type="hidden">
+<button>增加</button>
+}
 
-<div class="modal fade" id="content-add-modal" tabindex="-1" role="dialog" aria-labelledby="content-add-title"><!--aria-labelledby指向模态框的标题栏-->
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span><!--关闭按钮(x)-->
-                </button>
-                <h4 class="modal-title" id="content-add-title">ADD Content</h4>
-            </div>
-            <div class="modal-body">
-                <form id="content-add-form">
-                    <div class="form-group">
-                        <input name="content-add-id-val" type="hidden" class="form-control" id="content-add-id" value="@id">
-                    </div>
-                    <div class="form-group">
-                        <label for="content-add-content-1-name" class="control-label">Content One:</label>
-                        <textarea class="form-control" id="content-add-content-1-name" name="content-add-content-1-val" rows="6"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="content-add-content-2-name" class="control-label">Content Two:</label>
-                        <textarea class="form-control" id="content-add-content-2-name" name="content-add-content-2-val" rows="6"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                <button type="button" id="content-add-button-success" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>

@@ -1,7 +1,7 @@
 @(id:Int)
-@import helper._
-@helper.form(action = routes.gNote.add_content) {
-<input name="dir_id" value="@id" type="hidden">
-<button>增加</button>
-}
-
+<!--import helper._-->
+<!--helper.form(action = routes.gNote.add_content) {-->
+<!--<input name="dir_id" value="@id" type="hidden">-->
+<!--<button>增加</button>-->
+<!--}-->
+<a type="button" class="btn btn-link" href="@routes.gNote.add_content(id)">增加</a>

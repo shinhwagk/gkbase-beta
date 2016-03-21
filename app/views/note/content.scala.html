@@ -1,16 +1,32 @@
 @import models.gnote.dao._
 @(conts:HtmlDataContent)
 
-
-<table class="table table-condensed">
+<!--<table class="table table-condensed">-->
+<div class="container-fluid">
     @for(c <- conts.conts){
-
-    <td>@c.content_1</td>
-    <td>@c.content_2</td>
-    <td>
-        <a data-toggle="modal" href="@routes.gNote.get_content(c.id)" data-target="#content-update-modal">更新</a>
-        <a href="@routes.gNote.delete_content(c.id)">删除</a>
-    </td>
-    </tr>
+    <div class="row ">
+        <div class="col-lg-5">
+            <pre>@c.content_1</pre>
+        </div>
+        <div class="col-lg-6">
+            <pre>@c.content_2</pre>
+        </div>
+        <div class="col-lg-1">
+            @edit.content.update(c.id)
+            <a href="@routes.gNote.delete_content(c.id)">删除</a>
+        </div>
+    </div>
+    <!--<td>-->
+        <!--<pre>c.content_1</pre>-->
+    <!--</td>-->
+    <!--<td>-->
+        <!--<pre>c.content_2</pre>-->
+    <!--</td>-->
+    <!--<td>-->
+        <!--edit.content.update(c.id)-->
+        <!--<a href="routes.gNote.delete_content(c.id)">删除</a>-->
+    <!--</td>-->
+    <!--</tr>-->
     }
-</table>
+    </div>
+<!--</table>-->

@@ -24,8 +24,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   //  def dirAdd(id: Int, name: String) = Action {
 
-  def add_content = Action.async { implicit request =>
-    val id = request.body.asFormUrlEncoded.get.head._2.head.toInt
+  def add_content(id: Int) = Action.async { implicit request =>
     daoGnote.addContent(id).map { p =>
       Redirect(routes.gNote.c(id))
     }

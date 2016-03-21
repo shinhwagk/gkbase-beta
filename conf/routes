@@ -12,7 +12,7 @@ GET      /app/note/id/:id           controllers.gNote.c(id:Int)
 GET     /app/note/add/dir              controllers.gNote.add_directory(id:Int)
 GET      /app/note/dir/delete/:id   controllers.gNote.delete_directory(id:Int)
 
-POST     /app/note/content              controllers.gNote.add_content()
+GET     /app/note/content/add/:id              controllers.gNote.add_content(id:Int)
 GET      /app/note/content/delete/:id   controllers.gNote.delete_content(id:Int)
 GET      /app/note/content/:id      controllers.gNote.get_content(id:Int)
 POST     /app/note/content/put      controllers.gNote.update_content()

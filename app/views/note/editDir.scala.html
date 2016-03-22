@@ -1,8 +1,6 @@
-@(id:Int)
-<!--@edit.directory.update(id)-->
-<!--@edit.directory.delete(id)-->
+@(id:Int,dirName:String)
 <div class="btn-group">
-    <button type="button" class="btn btn-link ">Action</button>
+    <button type="button" class="btn btn-link ">@dirName</button>
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="caret"></span>
         <span class="sr-only">Toggle Dropdown1</span>
@@ -10,8 +8,7 @@
     <ul class="dropdown-menu">
         <li>@edit.directory.add(id)</li>
         <li>@edit.directory.update(id)</li>
-        <li><a href="#">移动</a></li>
-
+        <li>@edit.directory.move(id)</li>
         <li>@edit.directory.delete(id)</li>
         <li role="separator" class="divider"></li>
         <li>@edit.content.add(id)</li>

@@ -9,6 +9,11 @@ import slick.driver.JdbcProfile
 import slick.driver.MySQLDriver.api._
 import slick.lifted.TableQuery
 
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.collection.mutable.ArrayBuffer
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, Future}
+
 /**
   * Created by zhangxu on 16/3/16.
   */
@@ -21,11 +26,23 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   //导航顶部数据(一级)
   def navigationTopOne = db.run(tableCategory.filter(_.father_id === null.asInstanceOf[Option[Int]]).to[List].result)
 
-  //导航顶部数据(二级)
-  def navigationTopTwo(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
-
   //目录列表
   def category(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
+
+  def categoryTree(id: Int): ArrayBuffer[Int] = {
+    val bre = new ArrayBuffer[Int]()
+    def tree(did: Int): Unit = {
+      println(did,1)
+      val fth_id = Await.result(getDir(id), Duration.Inf).head.father_id.getOrElse()
+      bre += fth_id
+      if (fth_id != 0) {
+        tree(fth_id)
+      }
+    }
+    tree(id)
+    println(bre)
+    bre
+  }
 
   def content(id: Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)
 

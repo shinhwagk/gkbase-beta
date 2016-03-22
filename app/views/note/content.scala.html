@@ -3,30 +3,29 @@
 
 <!--<table class="table table-condensed">-->
 <div class="container-fluid">
-    @for(c <- conts.conts){
-    <div class="row ">
-        <div class="col-lg-5">
-            <pre>@c.content_1</pre>
-        </div>
-        <div class="col-lg-6">
-            <pre>@c.content_2</pre>
-        </div>
-        <div class="col-lg-1">
-            @edit.content.update(c.id)
-            <a href="@routes.gNote.delete_content(c.id)">删除</a>
-        </div>
+  @for(c <- conts.conts){
+  <div class="row ">
+    <div class="col-lg-5">
+      <pre>@c.content_1</pre>
     </div>
-    <!--<td>-->
-        <!--<pre>c.content_1</pre>-->
-    <!--</td>-->
-    <!--<td>-->
-        <!--<pre>c.content_2</pre>-->
-    <!--</td>-->
-    <!--<td>-->
-        <!--edit.content.update(c.id)-->
-        <!--<a href="routes.gNote.delete_content(c.id)">删除</a>-->
-    <!--</td>-->
-    <!--</tr>-->
-    }
+    <div class="col-lg-6">
+      <pre>@c.content_2</pre>
     </div>
+    <div class="col-lg-1">
+      @editContent(c.id)
+    </div>
+  </div>
+  <!--<td>-->
+  <!--<pre>c.content_1</pre>-->
+  <!--</td>-->
+  <!--<td>-->
+  <!--<pre>c.content_2</pre>-->
+  <!--</td>-->
+  <!--<td>-->
+  <!--edit.content.update(c.id)-->
+  <!--<a href="routes.gNote.delete_content(c.id)">删除</a>-->
+  <!--</td>-->
+  <!--</tr>-->
+  }
+</div>
 <!--</table>-->

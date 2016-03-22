@@ -1,6 +1,6 @@
 name := "gkbase-beta"
 
-version := "1.0.0-SNAPSHOT"
+version := "0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 

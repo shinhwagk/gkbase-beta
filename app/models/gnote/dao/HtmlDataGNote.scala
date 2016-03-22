@@ -20,13 +20,13 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
   } yield ViewsDataGNote(
     id,
     HtmlDataNavigationTopOne(navOne),
-    daoGNote.categoryTree(id),
+    HtmlDataBreadcrumb(daoGNote.categoryTree(id).toList),
     HtmlDataDirectory(dirs),
     HtmlDataContent(conts))
 
 }
 
-case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, catTree: ArrayBuffer[Int], dirs: HtmlDataDirectory, conts: HtmlDataContent)
+case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, brdTree: HtmlDataBreadcrumb, dirs: HtmlDataDirectory, conts: HtmlDataContent)
 
 case class HtmlDataNavigationTopOne(navOne: List[Category])
 

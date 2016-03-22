@@ -1,6 +1,7 @@
-@(id:Int)
+@import models.gnote.dao._
+@(data:HtmlDataBreadcrumb)
 <ol class="breadcrumb">
-    <li><a href="#">ffff</a></li>
-    <!--<li class="active">breadcrumb_unit(id)</li>-->
-    <li class>@editDir(id,"test")</li>
+    @for(b <- data.brd){
+    <li>@editDir(b.id,b.name)</li>
+    }
 </ol>

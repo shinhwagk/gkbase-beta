@@ -29,19 +29,18 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   //目录列表
   def category(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 
-  def categoryTree(id: Int): ArrayBuffer[Int] = {
-    val bre = new ArrayBuffer[Int]()
+  def categoryTree(id: Int): ArrayBuffer[Category] = {
+    val bre = new ArrayBuffer[Category]()
     def tree(did: Int): Unit = {
-      println(did,1)
-      val fth_id = Await.result(getDir(id), Duration.Inf).head.father_id.getOrElse()
-      bre += fth_id
-      if (fth_id != 0) {
-        tree(fth_id)
+      val row = Await.result(getDir(did), Duration.Inf).head
+      val fatId = row.father_id.getOrElse(0)
+      bre += row
+      if (fatId != 0) {
+        tree(fatId)
       }
     }
     tree(id)
-    println(bre)
-    bre
+    bre.reverse
   }
 
   def content(id: Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)

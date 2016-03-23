@@ -1,7 +1,0 @@
-@import models.gnote.dao._
-@(data:HtmlDataBreadcrumb)
-<ol class="breadcrumb">
-    @for(b <- data.brd){
-    <li>@editDir(b.id,b.name)</li>
-    }
-</ol>

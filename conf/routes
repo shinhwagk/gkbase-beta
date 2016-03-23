@@ -10,7 +10,9 @@ GET      /app/note/dir/delete/:id       controllers.gNote.delete_directory(id:In
 GET      /app/note/content/add/:id      controllers.gNote.add_content(id:Int)
 GET      /app/note/content/delete/:id   controllers.gNote.delete_content(id:Int)
 GET      /app/note/content/:id          controllers.gNote.get_content(id:Int)
+GET      /app/note/dir/:id              controllers.gNote.get_category(id:Int)
 POST     /app/note/content/put          controllers.gNote.update_content()
+POST     /app/note/dir/put              controllers.gNote.update_dir()
 
 
 

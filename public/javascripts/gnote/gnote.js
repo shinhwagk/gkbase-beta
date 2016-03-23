@@ -50,6 +50,26 @@ function content_update_exec(){
         });
 }
 
+function dir_update_exec(){
+    var inputs = $("#dir-update-modal").find(".modal-body").find("input")
+    var d_id = inputs[0].value
+        $.ajax({
+            type: "POST",
+    		url: "/app/note/dir/put",
+    		data: $('form#dir-update-form').serialize(),
+            success: function(msg){
+                $("#dir-update-modal").modal('hide');
+                location.href = "/app/note/id/" + d_id
+            },
+    		error: function(error) {
+                alert(error.status);
+                alert(error.readyState);
+                alert(error.textStatus);
+            },
+        });
+}
+
+
 $(function(){
     $("#dir-add-button-success").click(function(){
 //        alert(jsRoutes.controllers.gNote.dirAdd().url)

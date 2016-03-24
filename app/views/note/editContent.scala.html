@@ -1,13 +1,22 @@
-@(id:Int)
+@import models.gnote.dao.entity._
+@(con:Content)
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     Oper
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
-    <li>@edit.content.update(id)</li>
+    @if(con.document_id.isEmpty){
+    <li class="disabled"><a href="#">文档</a></li>
+    }else{
+    <li><a href="@edit.content.document(con.document_id)">文档</a></li>
+    }
     <li role="separator" class="divider"></li>
-    <li>@edit.content.delete(id)</li>
+    <li>@edit.content.update(con.id)</li>
+    <li role="separator" class="divider"></li>
+    <li>@edit.content.delete(con.id)</li>
+  </ul>
+
   </ul>
 </div>
 <div class="modal fade" id="content-update-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

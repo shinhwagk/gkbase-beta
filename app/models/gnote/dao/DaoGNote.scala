@@ -57,6 +57,10 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def getContent(id: Int) = db.run(tableContent.filter(_.id === id).to[List].result)
 
+  def getContentCount(did: Int) = db.run(tableContent.filter(_.category_id === did).length.result)
+
+  def getCategoryCount(fid: Int) = db.run(tableCategory.filter(_.father_id === fid).length.result)
+
   def getCategory(id: Int) = db.run(tableCategory.filter(_.id === id).to[List].result)
 
   def addContent(id: Int) = db.run(DBIO.seq(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=("???", "???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))));
@@ -65,5 +69,12 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def updateContent(id: Int, con_1: String, con_2: String) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.updatedata)).update(con_1, con_2, new java.sql.Date(new Date().getTime)))
 
-  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name,c.updatedata)).update(name, new java.sql.Date(new Date().getTime)))
+  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedata)).update(name, new java.sql.Date(new Date().getTime)))
+
+
+  def test(id:Int) =for{
+    c <- tableCategory.filter(_.id === id)
+    b <- tableCategory.filter(_.father_id in(c.id)).length
+    d <- tableContent.filter(_.category_id in(c.id)).length
+  }yield (c,,d)
 }

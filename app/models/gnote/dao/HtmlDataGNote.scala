@@ -1,11 +1,9 @@
 package models.gnote.dao
 
-import java.sql.Connection
 import javax.inject.Inject
 
 import models.gnote.dao.entity.{Category, Content}
 
-import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
@@ -15,8 +13,14 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
   def getViewsDataGNote(id: Int) = for {
     navOne <- daoGNote.navigationTopOne
     brd <- daoGNote.categoryTree(id)
-    dirs <- daoGNote.category(id)
     conts <- daoGNote.content(id)
+    dirs <- daoGNote.getCategory(id)
+    c <- dirs.map{p=>daoGNote.getCategory(p.father_id.getOrElse(0))}
+    b <- dirs.map{p=>daoGNote.getContent(p.father_id.getOrElse(0))}
+    d <- c
+    
+
+
   } yield ViewsDataGNote(
     id,
     HtmlDataNavigationTopOne(navOne),
@@ -26,6 +30,8 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
 }
 
 case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, brdTree: HtmlDataBreadcrumb, dirs: HtmlDataDirectory, conts: HtmlDataContent)
+
+case class CategoryCountVersion(category: Category, dirCnt: Int, cetCnt: Int)
 
 case class HtmlDataNavigationTopOne(navOne: List[Category])
 

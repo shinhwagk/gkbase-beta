@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
+import models.gnote.config.gConfig
 import models.gnote.dao.{DaoGNote, HtmlDataGNote}
 import play.api.mvc._
 
@@ -12,12 +13,16 @@ import scala.concurrent.ExecutionContext
   */
 class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
 
-  //d
   def c(id: Int) = Action.async { implicit request =>
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
 
-  //  def dirAdd(id: Int, name: String) = Action {
+  def d(id: Int) = Action {
+//    val path = gConfig.DOCUMENT_PATH
+//    Ok.sendFile(new java.io.File(s"$path\\$id"), inline = true)
+    Ok(views.html.note.document("#adsfsdf"))
+
+  }
 
   def add_content(id: Int) = Action.async { implicit request =>
     daoGnote.addContent(id).map { p =>
@@ -68,7 +73,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     }
   }
 
-  def update_dir =Action.async{implicit request =>
+  def update_dir = Action.async { implicit request =>
     val pars = request.body.asFormUrlEncoded.get
     val id = pars("dir-update-id-val").head.toInt
     val name = pars("dir-update-name-val").head

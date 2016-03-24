@@ -1,6 +1,6 @@
 @import models.gnote.dao.ViewsDataGNote
 @(data:ViewsDataGNote)(implicit req: RequestHeader)
-
+@data.test
 @main("Note"){
 @note.navigation(data.navOne)
 <div class="container-fluid">

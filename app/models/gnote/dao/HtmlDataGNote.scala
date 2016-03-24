@@ -15,21 +15,18 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
     brd <- daoGNote.categoryTree(id)
     conts <- daoGNote.content(id)
     dirs <- daoGNote.getCategory(id)
-    c <- dirs.map{p=>daoGNote.getCategory(p.father_id.getOrElse(0))}
-    b <- dirs.map{p=>daoGNote.getContent(p.father_id.getOrElse(0))}
-    d <- c
-    
-
-
+    t <- daoGNote.test(id)
   } yield ViewsDataGNote(
     id,
     HtmlDataNavigationTopOne(navOne),
     HtmlDataBreadcrumb(brd),
     HtmlDataDirectory(dirs),
-    HtmlDataContent(conts))
+    HtmlDataContent(conts),
+    test(t.map{p=>(p._1,p._2.getOrElse(0))})
+  )
 }
 
-case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, brdTree: HtmlDataBreadcrumb, dirs: HtmlDataDirectory, conts: HtmlDataContent)
+case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, brdTree: HtmlDataBreadcrumb, dirs: HtmlDataDirectory, conts: HtmlDataContent, test: test)
 
 case class CategoryCountVersion(category: Category, dirCnt: Int, cetCnt: Int)
 
@@ -40,3 +37,5 @@ case class HtmlDataBreadcrumb(brd: List[Category])
 case class HtmlDataDirectory(dirs: List[Category])
 
 case class HtmlDataContent(conts: List[Content])
+
+case class test(ddd: List[( Int, Int)])

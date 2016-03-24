@@ -71,59 +71,42 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedata)).update(name, new java.sql.Date(new Date().getTime)))
 
-  def test(id: Int) = {
-    val abc3 = sql"""
-  select category_id ,count(*)
-  from content p
-  where p.category_id in (select id from category where father_id = $id) group by category_id
-  union
-                  select id,0
-                                                    from category
-                                                    where father_id = $id
-
-""".as[(Int, Int)]
-
-
-    val abc = sql"""
-  select father_id,count(*)
-  from category p
-  where p.father_id in (select id
-                 from category
-                 where father_id = $id) group by father_id
-                 UNION
-                 select id,0
-                                  from category
-                                  where father_id = $id
-
-""".as[(Int, Int)]
+  def getdirsinfo(id: Int) = {
     val a = tableCategory.filter(_.father_id === id)
 
     val b = tableCategory.filter(_.father_id in (a.map(_.id)))
       .groupBy(_.father_id).map { case (fatid, group) => (fatid, group.length) }
-    val c = b.union(a.map { p => (p.id, 0) })
-    val d = c.groupBy(_._1).map { p => (p._1, p._2.map(_._2).sum) }
 
     val e = tableContent.filter(_.category_id in a.map(_.id))
       .groupBy(_.category_id).map { case (cid, group) => (cid, group.length) }
-    val f = e.union(a.map { p => (p.id, 0) })
-    val g = f.groupBy(_._1).map { p => (p._1, p._2.map(_._2).sum) }
 
-    //    val h = (d join g on (_._1 === _._1)).map( case (dv, gv) => (dv.))
-    val h = for (p <- d;
-                 a <- g if p._1 === a._1
-    ) yield (p._1, p._2.getOrElse(0), a._2)
+    val f = for {
+      ((c, s), x) <- a joinLeft b on (_.id === _._1) joinLeft e on (_._1.id === _._1)
+    } yield (c, s.map(_._2).ifNull(0), x.map(_._2).ifNull(0))
 
-    val j = for (
-      z <- h;
-      y <- a if z._1 === y.id
-    )yield(z._1,y.name,z._2,z._3.getOrElse(0))
+    //    val c = b.union(a.map { p => (p.id, 0) })
+    //    val d = c.groupBy(_._1).map { p => (p._1, p._2.map(_._2).sum) }
+    //
+    //
+    //    val f = e.union(a.map { p => (p.id, 0) })
+    //    val g = f.groupBy(_._1).map { p => (p._1, p._2.map(_._2).sum) }
+    //
+    //    //    val h = (d join g on (_._1 === _._1)).map( case (dv, gv) => (dv.))
+    //    val h = for (p <- d;
+    //                 a <- g if p._1 === a._1
+    //    ) yield (p._1, p._2.getOrElse(0), a._2)
+    //
+    //    val j = for (
+    //      z <- h;
+    //      y <- a if z._1 === y.id
+    //    )yield(z._1,y.name,z._2,z._3.getOrElse(0))
     //    val abc = for {
     //      a <- catinfo
     //      b <- catcount if a.id === b._1
     //      c <- concount if a.id === c._1
     //    } yield (a.id, b._2, c._2)
     //    println(abc.head.statements)
-      db.run(h.to[List].result)
+    db.run(f.to[List].result)
     //    db.run(catcount.map { p => (p._1, p._2) }.to[List].result)
   }
 

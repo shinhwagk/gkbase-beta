@@ -2,9 +2,9 @@
 @(dirs:HtmlDataDirectory)
 <div class="list-group">
     @for(d <- dirs.dirs){
-    <a href="@routes.gNote.c(d.id)" class="list-group-item">
-        <span class="badge">11 </span>
-        @d.name
+    <a href="@routes.gNote.c(d.category.id)" class="list-group-item">
+        <span class="badge">@(d.dirCnt),@(d.cetCnt)</span>
+        @d.category.name
     </a>
     }
 </div>

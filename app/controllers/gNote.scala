@@ -17,11 +17,10 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
 
-  def d(id: Int) = Action {
-//    val path = gConfig.DOCUMENT_PATH
-//    Ok.sendFile(new java.io.File(s"$path\\$id"), inline = true)
-    Ok(views.html.note.document("#adsfsdf"))
-
+  def d(id: Int) = Action { implicit request =>
+    val path = gConfig.DOCUMENT_PATH
+    val o = scala.io.Source.fromFile(s"$path\\${id}.md")
+    Ok(views.html.note.document(o.mkString))
   }
 
   def add_content(id: Int) = Action.async { implicit request =>

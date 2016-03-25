@@ -36,5 +36,12 @@ insert into g_note.content values(3,'ab3c','cdcc',2,now(),now(),null);
 
 --文档编号
 create table g_note.document(
-  id int auto_increment primary key
+  id int auto_increment primary key,
+  dtype varchar(5),
+  state int not null,
+  createdata datetime not null,
+  updatedata datetime not null
 );
+--测试数据
+insert into g_note.document values(1,1,now(),now());
+insert into g_note.document values(2,1,now(),now());

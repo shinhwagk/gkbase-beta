@@ -7,9 +7,10 @@
   </button>
   <ul class="dropdown-menu">
     @if(con.document_id.isEmpty){
+    111
     <li class="disabled"><a href="#">文档</a></li>
     }else{
-    <li><a href="@edit.content.document(con.document_id)">文档</a></li>
+    <li>@edit.content.document(con.document_id)</li>
     }
     <li role="separator" class="divider"></li>
     <li>@edit.content.update(con.id)</li>

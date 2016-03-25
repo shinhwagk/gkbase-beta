@@ -12,6 +12,7 @@ create table g_note.category (
   updatedata datetime not null,
   foreign key (father_id) references g_note.category(id)
 );
+create index category_father_id on g_note.category(father_id);
 --测试数据
 insert into g_note.category values(3,'backup',null,now(),now());
 insert into g_note.category values(4,'backup',3,now(),now());

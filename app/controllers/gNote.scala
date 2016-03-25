@@ -7,6 +7,7 @@ import models.gnote.dao.{DaoGNote, HtmlDataGNote}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
+import scala.util.{Failure, Success}
 
 /**
   * Created by zhangxu on 2016/3/16.
@@ -63,11 +64,14 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   def update_content = Action.async { implicit request =>
     val pars = request.body.asFormUrlEncoded.get
+    println(pars)
     val id = pars("content-update-id-val").head.toInt
     val did = pars("content-update-did-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
-    daoGnote.updateContent(id, content_1, content_2).map { p =>
+    val document_id = pars("content-update-docid-val").head.toInt
+    val fexec = daoGnote.updateContent(id, content_1, content_2, document_id)
+    fexec.map { p =>
       Ok(content_1)
     }
   }

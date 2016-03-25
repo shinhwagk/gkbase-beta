@@ -3,11 +3,13 @@
 <div class="modal-body">
     <form id="content-update-form">
         <div class="form-group">
-            <input name="content-update-id-val" type="hidden" class="form-control" id="content-update-id"
+            <label for="content-update-id" class="control-label">Content Id:</label>
+            <input name="content-update-id-val" type="text" readonly="readonly" class="form-control" id="content-update-id"
                    value="@c.id">
         </div>
         <div class="form-group">
-            <input name="content-update-did-val" type="hidden" class="form-control" id="content-update-did"
+            <label for="content-update-did" class="control-label">Content Id:</label>
+            <input name="content-update-did-val" type="text" readonly="readonly" class="form-control" id="content-update-did"
                    value="@c.category_id">
         </div>
         <div class="form-group">
@@ -21,6 +23,11 @@
             <textarea class="form-control" id="content-update-content-2-name"
                       name="content-update-content-2-val"
                       rows="6">@c.content_2</textarea>
+        </div>
+        <div class="form-group">
+            <label for="content-update-docid" class="control-label">Douement Id:</label>
+            <input name="content-update-docid-val" type="text" class="form-control" id="content-update-docid"
+                   value="@c.document_id">
         </div>
     </form>
 </div>

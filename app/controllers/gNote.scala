@@ -20,8 +20,9 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   def d(id: Int) = Action { implicit request =>
     val path = gConfig.DOCUMENT_PATH
-    val o = scala.io.Source.fromFile(s"$path\\${id}.md")
-    Ok(views.html.note.document(o.mkString))
+//    val o = scala.io.Source.fromFile(s"$path\\${id}.md")
+//    Ok(views.html.note.document(o.mkString))
+    Ok(views.html.note.document("#dfdf"))
   }
 
   def add_content(id: Int) = Action.async { implicit request =>

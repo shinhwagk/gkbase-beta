@@ -17,31 +17,19 @@ class HtmlDataGNote @Inject()(daoGNote: DaoGNote) {
     id,
     HtmlDataNavigationTopOne(navOne),
     HtmlDataBreadcrumb(brd),
-<<<<<<< Updated upstream
-    HtmlDataDirectory(t.map { p => CategoryInfoCount(p._1, p._2, p._3) }),
-=======
-    HtmlDataDirectory(t.map{p=>CategorysAndCount(p._1,p._2,p._3)}),
->>>>>>> Stashed changes
+    HtmlDataDirectory(t.map { p => CategorysAndCount(p._1, p._2, p._3) }),
     HtmlDataContent(conts)
   )
 }
 
 case class ViewsDataGNote(id: Int, navOne: HtmlDataNavigationTopOne, brdTree: HtmlDataBreadcrumb, dirs: HtmlDataDirectory, conts: HtmlDataContent)
 
-<<<<<<< Updated upstream
-case class CategoryInfoCount(category: Category, dirCnt: Int, cetCnt: Int)
-=======
 case class CategorysAndCount(category: Category, dirCnt: Int, cetCnt: Int)
->>>>>>> Stashed changes
 
 case class HtmlDataNavigationTopOne(navOne: List[Category])
 
 case class HtmlDataBreadcrumb(brd: List[Category])
 
-<<<<<<< Updated upstream
-case class HtmlDataDirectory(dirs: List[CategoryInfoCount])
-=======
 case class HtmlDataDirectory(dirs: List[CategorysAndCount])
->>>>>>> Stashed changes
 
 case class HtmlDataContent(conts: List[Content])

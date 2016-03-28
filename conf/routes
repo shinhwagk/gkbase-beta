@@ -1,3 +1,6 @@
+# index
+GET      /                              controllers.Application.index
+
 
 # Note
 GET      /app/note/id/:id               controllers.gNote.c(id:Int)

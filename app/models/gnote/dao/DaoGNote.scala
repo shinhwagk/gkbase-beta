@@ -23,7 +23,8 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
   val tableContent = TableQuery[Contents]
 
   //导航顶部数据
-  def navigationTopOne = db.run(tableCategory.filter(_.father_id === null.asInstanceOf[Option[Int]]).to[List].result)
+  //  def navigationTopOne = db.run(tableCategory.filter(_.father_id === null.asInstanceOf[Option[Int]]).to[List].result)
+  def navigationTopOne = db.run(tableCategory.filter(_.father_id === 0).to[List].result)
 
   //目录列表
   def category(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
@@ -67,7 +68,7 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).delete)
 
-  def updateContent(id: Int, con_1: String, con_2: String, document_id: Int) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.updatedata)).update(con_1, con_2, document_id, new java.sql.Date(new Date().getTime)))
+  def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int]) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.updatedata)).update(con_1, con_2, document_id, new java.sql.Date(new Date().getTime)))
 
   def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedata)).update(name, new java.sql.Date(new Date().getTime)))
 

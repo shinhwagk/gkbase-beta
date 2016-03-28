@@ -1,4 +1,7 @@
-grant select,update,delete,insert on g_note.* to test_n@'%';
+﻿--用户
+create user g_note identified by 'g_note';
+grant select,update,delete,insert on g_note.* to g_note@'%';
+grant all on g_note.* to g_note@'%';
 flush privileges;
 --笔记数据库
 create database g_note;
@@ -7,15 +10,11 @@ create database g_note;
 create table g_note.category (
   id int auto_increment primary key,
   name varchar(20) not null,
-  father_id int,
+  father_id int not null,
   createdata datetime not null,
-  updatedata datetime not null,
-  foreign key (father_id) references g_note.category(id)
+  updatedata datetime not null
 );
 create index category_father_id on g_note.category(father_id);
---测试数据
-insert into g_note.category values(3,'backup',null,now(),now());
-insert into g_note.category values(4,'backup',3,now(),now());
 
 --note内容
 create table g_note.content (
@@ -29,10 +28,6 @@ create table g_note.content (
   foreign key (category_id) REFERENCES g_note.category(id),
   foreign key (document_id) REFERENCES g_note.document(id)
 );
---测试数据
-insert into g_note.content values(1,'abc1','ccc1',2,now(),now(),null);
-insert into g_note.content values(2,'abc2','cc2c',2,now(),now(),null);
-insert into g_note.content values(3,'ab3c','cdcc',2,now(),now(),null);
 
 --文档编号
 create table g_note.document(
@@ -42,6 +37,3 @@ create table g_note.document(
   createdata datetime not null,
   updatedata datetime not null
 );
---测试数据
-insert into g_note.document values(1,1,now(),now());
-insert into g_note.document values(2,1,now(),now());

@@ -15,6 +15,8 @@ import scala.util.{Failure, Success}
 class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
 
   def c(id: Int) = gnote.Action.LoggingAction.async { implicit request =>
+    println(request.session.get("username"))
+
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
 

@@ -14,7 +14,7 @@ import scala.util.{Failure, Success}
   */
 class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
 
-  def c(id: Int) = Action.async { implicit request =>
+  def c(id: Int) = gnote.Action.LoggingAction.async { implicit request =>
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
 
@@ -22,11 +22,9 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     val path = gConfig.DOCUMENT_PATH
     val o = scala.io.Source.fromFile(s"$path\\${id}.md")
     Ok(views.html.note.document(o.mkString))
-    //    Ok(views.html.note.document("#dfdf"))
   }
 
   def add_content(id: Int) = Action.async { implicit request =>
-
     daoGnote.addContent(id).map { p =>
       Redirect(routes.gNote.c(id))
     }

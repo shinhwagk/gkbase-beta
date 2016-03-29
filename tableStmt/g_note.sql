@@ -1,9 +1,4 @@
-﻿--用户
-create user g_note identified by 'g_note';
-grant select,update,delete,insert on g_note.* to g_note@'%';
-grant all on g_note.* to g_note@'%';
-flush privileges;
---笔记数据库
+﻿--笔记数据库
 create database g_note;
 
 --top种类

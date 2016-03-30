@@ -14,15 +14,14 @@ import scala.util.{Failure, Success}
   */
 class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
 
-  def c(id: Int) = gnote.Action.LoggingAction.async { implicit request =>
-    println(request.session.get("username"))
-
+  def c(id: Int) = Action.async { implicit request =>
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
   }
 
   def d(id: Int) = Action { implicit request =>
     val path = gConfig.DOCUMENT_PATH
-    val o = scala.io.Source.fromFile(s"$path\\${id}.md")
+    val o = scala.io.Source.fromFile(s"$path\\${id}.md","utf8")
+    println(o)
     Ok(views.html.note.document(o.mkString))
   }
 
@@ -66,15 +65,15 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   def update_content = Action.async { implicit request =>
     val pars = request.body.asFormUrlEncoded.get
-    println("aa     " + pars)
     val id = pars("content-update-id-val").head.toInt
     val did = pars("content-update-did-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
 
     val document_id_par = pars("content-update-docid-val").head
-
-    val document_id = if (document_id_par == "") None else Some(document_id_par.head.toInt)
+    println(document_id_par)
+    val document_id = if (document_id_par == "") None else Some(document_id_par.toInt)
+    println(document_id)
     daoGnote.updateContent(id, content_1, content_2, document_id).map { p =>
       Ok(content_1)
     }

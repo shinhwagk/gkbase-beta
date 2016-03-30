@@ -9,13 +9,13 @@
 
     <li>@edit.content.update(con.id)</li>
     <li role="separator" class="divider"></li>
-    <li>@edit.content.delete(con.id)</li>
-    <li role="separator" class="divider"></li>
     @if(con.document_id.isEmpty){
     <li class="disabled"><a href="#">文档</a></li>
     }else{
     <li>@edit.content.document(con.document_id)</li>
     }
+    <li role="separator" class="divider"></li>
+    <li>@edit.content.delete(con.id)</li>
 
   </ul>
 

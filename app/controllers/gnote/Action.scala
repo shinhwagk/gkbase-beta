@@ -15,7 +15,8 @@ object Action {
       request.session.get("username").map { p =>
         block(request)
       }.getOrElse {
-        Future.successful(Ok("a"))
+        //        Future.successful(Ok("a"))
+        Future.successful(Forbidden("Only HTTPS requests allowed"))
       }
     }
   }

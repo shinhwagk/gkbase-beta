@@ -9,7 +9,7 @@
 //})
 
 
-$(function(){$('#dir-add-button-open').on('show.bs.modal', function (event) {
+$(function(){$('#dir-add-button-open').on('shown.bs.modal', function (event) {
 //  var button = $(event.relatedTarget)
 //  var recipient = button.data('whatever')
 //  var modal = $(this)
@@ -20,11 +20,28 @@ $(function(){$('#dir-add-button-open').on('show.bs.modal', function (event) {
 
 })})
 
+$(function(){$('#dir-update-modal').on('shown.bs.modal', function (event) {
+  $("#dir-update-name").focus()
+})})
+
+$(function(){
+    $('#dir-update-name').bind('keypress',function(event){
+    alert(111)
+        if(event.keyCode == "13"){
+
+            dir_update_exec()
+        }
+    });
+});
+
 //远端模态框---重置
 $(function(){$('#content-update-modal').on("hidden.bs.modal", function (e) {
       $(e.target).removeData("bs.modal").find(".modal-content").empty();
   });
 })
+
+
+
 
 function content_update_exec(){
 //var button = $(event.relatedTarget) // Button that triggered the modal

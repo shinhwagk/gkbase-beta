@@ -50,7 +50,7 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def content(id: Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)
 
-  def addDir(id: Int) = db.run(DBIO.seq(tableCategory.map(c => (c.name, c.father_id, c.createdata, c.updatedata)) +=("???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))));
+  def addDir(id: Int) = db.run(DBIO.seq(tableCategory.map(c => (c.name, c.father_id, c.createdata, c.updatedata)) +=("", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))));
 
   def deleteDir(id: Int) = db.run(tableCategory.filter(_.id === id).delete)
 

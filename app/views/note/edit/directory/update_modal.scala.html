@@ -9,11 +9,11 @@
     <div class="form-group">
       <label for="dir-update-name" class="control-label">Dir Name:</label>
       <input name="dir-update-name-val" type="text" class="form-control" id="dir-update-name"
-             value="@c.name">
+             value="@c.name" onkeypress="if(event.keyCode==13){dir_update_exec()}">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
   <button type="button" class="btn btn-primary" onclick="javascriopt:dir_update_exec()">Submit</button>
+  <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
 </div>

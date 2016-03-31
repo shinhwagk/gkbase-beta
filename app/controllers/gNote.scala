@@ -13,6 +13,7 @@ import scala.util.{Failure, Success}
   * Created by zhangxu on 2016/3/16.
   */
 class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
+  implicit val myCustomCharset = Codec.utf_8
 
   def c(id: Int) = Action.async { implicit request =>
     data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
@@ -21,7 +22,6 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   def d(id: Int) = Action { implicit request =>
     val path = gConfig.DOCUMENT_PATH
     val o = scala.io.Source.fromFile(s"$path\\${id}.md","utf8")
-    println(o)
     Ok(views.html.note.document(o.mkString))
   }
 

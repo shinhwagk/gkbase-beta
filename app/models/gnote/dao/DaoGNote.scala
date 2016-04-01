@@ -5,9 +5,11 @@ import javax.inject.Inject
 
 import models.gnote.dao.entity._
 import play.api.db.slick.DatabaseConfigProvider
+import slick.dbio.Effect.Write
 import slick.driver.JdbcProfile
 import slick.driver.MySQLDriver.api._
 import slick.lifted.TableQuery
+import slick.profile.FixedSqlAction
 
 import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -45,12 +47,17 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
         }
       } yield id
     }
-    tree(id).map { b => println(bre); bre.reverse.toList }
+    tree(id).map { b => bre.reverse.toList }
   }
 
   def content(id: Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)
 
-  def addDir(id: Int) = db.run(DBIO.seq(tableCategory.map(c => (c.name, c.father_id, c.createdata, c.updatedata)) +=("", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))));
+  def addDir(id2: Int) = {
+    val dirid = (tableCategory.map(c => (c.name, c.father_id, c.createdate, c.updatedate)) returning tableCategory.map(_.id)) +=
+      ("", id2, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))
+    db.run(dirid)
+
+  }
 
   def deleteDir(id: Int) = db.run(tableCategory.filter(_.id === id).delete)
 
@@ -64,13 +71,13 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def getCategory(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 
-  def addContent(id: Int) = db.run(DBIO.seq(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=("???", "???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime))));
+  def addContent(id: Int) = db.run(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=("???", "???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime)));
 
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).delete)
 
   def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int]) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.updatedata)).update(con_1, con_2, document_id, new java.sql.Date(new Date().getTime)))
 
-  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedata)).update(name, new java.sql.Date(new Date().getTime)))
+  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedate)).update(name, new java.sql.Date(new Date().getTime)))
 
   //用于左侧目录索引显示，子目录数量和子目录内容数量
   def getDirsInfoAndCnt(id: Int) = {

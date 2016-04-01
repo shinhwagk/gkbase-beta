@@ -21,7 +21,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   def d(id: Int) = Action { implicit request =>
     val path = gConfig.DOCUMENT_PATH
-    val o = scala.io.Source.fromFile(s"$path\\${id}.md","utf8")
+    val o = scala.io.Source.fromFile(s"$path\\${id}.md", "utf8")
     Ok(views.html.note.document(o.mkString))
   }
 
@@ -32,9 +32,10 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   }
 
   def add_directory(id: Int) = Action.async { implicit request =>
-    daoGnote.addDir(id).map { p =>
-      Redirect(routes.gNote.c(id))
-    }
+    for {
+      newDirId <- daoGnote.addDir(id)
+      dirInfo <- daoGnote.getDir(newDirId)
+    } yield Ok(views.html.note.edit.directory.update_modal(dirInfo.head))
   }
 
   def delete_directory(id: Int) = Action.async {
@@ -71,9 +72,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     val content_2 = pars("content-update-content-2-val").head
 
     val document_id_par = pars("content-update-docid-val").head
-    println(document_id_par)
     val document_id = if (document_id_par == "") None else Some(document_id_par.toInt)
-    println(document_id)
     daoGnote.updateContent(id, content_1, content_2, document_id).map { p =>
       Ok(content_1)
     }

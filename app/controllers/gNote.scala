@@ -21,7 +21,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
 
   def d(id: Int) = Action { implicit request =>
     val path = gConfig.DOCUMENT_PATH
-    val o = scala.io.Source.fromFile(s"$path\\${id}.md", "utf8")
+    val o = scala.io.Source.fromFile(s"$path/${id}.md", "utf8")
     Ok(views.html.note.document(o.mkString))
   }
 

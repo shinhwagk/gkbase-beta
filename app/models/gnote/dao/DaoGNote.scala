@@ -73,6 +73,8 @@ class DaoGNote @Inject()(dbConfigProvider: DatabaseConfigProvider) {
 
   def addContent(id: Int) = db.run(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=("???", "???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime)));
 
+  def addDirWithContent(id: Int, dirName: String) = db.run(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=(dirName, "???", id, new java.sql.Date(new Date().getTime), new java.sql.Date(new Date().getTime)));
+
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).delete)
 
   def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int]) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.updatedata)).update(con_1, con_2, document_id, new java.sql.Date(new Date().getTime)))

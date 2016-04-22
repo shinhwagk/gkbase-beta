@@ -5,10 +5,13 @@
 <div class="container-fluid">
   @for(c <- conts.conts){
   <div class="row ">
+    <div class="col-lg-1">
+      <pre>@c.id</pre>
+    </div>
     <div class="col-lg-5">
       <pre>@c.content_1</pre>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-5">
       <pre>@c.content_2</pre>
     </div>
     <div class="col-lg-1">

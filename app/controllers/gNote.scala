@@ -75,9 +75,9 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     val id = pars("content-update-id-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
-
     val document_id_par = pars("content-update-docid-val").head
     val file_id_par = pars("content-update-fileid-val").head
+
     val document_id = if (document_id_par == "") None else Some(document_id_par.toInt)
     val file_id = if (file_id_par == "") None else Some(file_id_par.toInt)
     daoGnote.updateContent(id, content_1, content_2, document_id, file_id).map { p =>

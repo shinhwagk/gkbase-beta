@@ -26,7 +26,7 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   }
 
   def f(id: Int) = Action { implicit request =>
-    val path = gConfig.file
+    val path = gConfig.FILE_PATH
     val github_file_url = s"$path/$id"
     Redirect(github_file_url)
   }

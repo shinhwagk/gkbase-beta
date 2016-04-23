@@ -14,6 +14,11 @@
     }else{
     <li>@edit.content.document(con.document_id)</li>
     }
+    @if(con.file_id.isEmpty){
+    <li class="disabled"><a href="#">文件</a></li>
+    }else{
+    <li>@edit.content.document(con.file_id)</li>
+    }
     <li role="separator" class="divider"></li>
     <li>@edit.content.delete(con.id)</li>
 

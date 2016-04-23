@@ -7,4 +7,5 @@ import com.typesafe.config.ConfigFactory
   */
 object gConfig {
   val DOCUMENT_PATH = play.Configuration.root().getString("note.doc.path")
+  val FILE_PATH = play.Configuration.root().getString("note.file.path")
 }

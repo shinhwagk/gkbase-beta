@@ -25,6 +25,12 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
     Redirect(github_doc_url)
   }
 
+  def f(id: Int) = Action { implicit request =>
+    val path = gConfig.file
+    val github_file_url = s"$path/$id"
+    Redirect(github_file_url)
+  }
+
   def add_content(id: Int) = Action.async { implicit request =>
     daoGnote.addContent(id).map { p =>
       Redirect(routes.gNote.c(id))
@@ -67,11 +73,11 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   def update_content = Action.async { implicit request =>
     val pars = request.body.asFormUrlEncoded.get
     val id = pars("content-update-id-val").head.toInt
-    val did = pars("content-update-did-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
 
     val document_id_par = pars("content-update-docid-val").head
+    val file_id_par = pars("content-update-fileid-val").head
     val document_id = if (document_id_par == "") None else Some(document_id_par.toInt)
     daoGnote.updateContent(id, content_1, content_2, document_id).map { p =>
       Ok(content_1)

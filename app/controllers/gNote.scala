@@ -2,12 +2,10 @@ package controllers
 
 import javax.inject.Inject
 
-import models.gnote.config.gConfig
 import models.gnote.dao.{DaoGNote, HtmlDataGNote}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
-import scala.util.{Failure, Success}
 
 /**
   * Created by zhangxu on 2016/3/16.
@@ -20,13 +18,13 @@ class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: Exec
   }
 
   def d(id: Int) = Action { implicit request =>
-    val path = gConfig.DOCUMENT_PATH
+    val path = play.Configuration.root().getString("note.doc.path")
     val github_doc_url = s"$path/${id}/${id}.md"
     Redirect(github_doc_url)
   }
 
   def f(id: Int) = Action { implicit request =>
-    val path = gConfig.FILE_PATH
+    val path = play.Configuration.root().getString("note.file.path")
     val github_file_url = s"$path/$id"
     Redirect(github_file_url)
   }

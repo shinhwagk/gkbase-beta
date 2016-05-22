@@ -1,7 +1,6 @@
 # index
 GET      /                              controllers.Application.index
 
-
 # Note
 GET      /app/note/id/:id               controllers.gNote.c(id:Int)
 
@@ -25,11 +24,7 @@ GET      /app/note/content/add/:id      controllers.gNote.add_content(id:Int)
 GET      /app/note/content/delete/:id   controllers.gNote.delete_content(id:Int)
 POST     /app/note/content/put          controllers.gNote.update_content()
 
-
-
-
 #POST    /app/note/content          controllers.gNote.update(id:Int,name:String)
-
 
 # Javascript routing
 #GET /javascriptRoutes    controllers.gNote.javascriptRoutes

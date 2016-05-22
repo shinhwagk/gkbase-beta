@@ -17,7 +17,7 @@ class Categorys(tag: Tag) extends Table[Category](tag, "category") {
 
   def father_id = column[Int]("father_id")
 
-  def createdate = column[Date]("createdata")
+  def createdate = column[Date]("createdate")
 
-  def updatedate = column[Date]("updatedata")
+  def updatedate = column[Date]("updatedate")
 }

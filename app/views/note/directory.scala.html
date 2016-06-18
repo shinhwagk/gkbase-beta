@@ -1,10 +1,10 @@
 @import models.gnote.dao._
-@(dirs:HtmlDataDirectory)
+@(id:Int)
 <div class="list-group">
-    @for(d <- dirs.dirs){
-    <a href="@routes.gNote.c(d.category.id)" class="list-group-item">
-        <span class="badge">@(d.dirCnt),@(d.cetCnt)</span>
-        @d.category.name
+    @for(d <- ViewDao.getDirsInfoAndCnt(id)){
+    <a href="@routes.gNote.c(d._1.id)" class="list-group-item">
+        <span class="badge">@(d._2),@(d._3)</span>
+        @d._1.name
     </a>
     }
 </div>

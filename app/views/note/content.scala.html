@@ -1,9 +1,9 @@
 @import models.gnote.dao._
-@(conts:HtmlDataContent)
+@(id:Int)
 
 <!--<table class="table table-condensed">-->
 <div class="container-fluid">
-  @for(c <- conts.conts){
+  @for(c <- ViewDao.getContent(id)){
   <div class="row ">
     <div class="col-lg-1">
       <pre>@c.id</pre>

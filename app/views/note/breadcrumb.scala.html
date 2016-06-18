@@ -1,7 +1,7 @@
 @import models.gnote.dao._
-@(data:HtmlDataBreadcrumb)
+@(id:Int)
 <ol class="breadcrumb">
-    @for(b <- data.brd){
+    @for(b <- ViewDao.getCategoryTree(id)){
     <li>@editDir(b.id,b.name)</li>
     }
 </ol>

@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
-import models.gnote.dao.{DaoGNote, HtmlDataGNote}
+import models.gnote.dao.{DaoGNote}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
@@ -10,11 +10,12 @@ import scala.concurrent.ExecutionContext
 /**
   * Created by zhangxu on 2016/3/16.
   */
-class gNote @Inject()(data: HtmlDataGNote, daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
+class gNote @Inject()(daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
+
   implicit val myCustomCharset = Codec.utf_8
 
-  def c(id: Int) = Action.async { implicit request =>
-    data.getViewsDataGNote(id).map { d => Ok(views.html.note.index(d)) }
+  def c(id: Int) = Action {
+    Ok(views.html.note.index(id))
   }
 
   def d(id: Int) = Action { implicit request =>

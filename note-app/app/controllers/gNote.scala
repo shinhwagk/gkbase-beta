@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
-import models.gnote.dao.{DaoGNote}
+import models.gnote.dao.{DaoGNote, ViewDao}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext
 /**
   * Created by zhangxu on 2016/3/16.
   */
-class gNote @Inject()(daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends Controller {
+class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
 
   implicit val myCustomCharset = Codec.utf_8
 
@@ -31,42 +31,39 @@ class gNote @Inject()(daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends
   }
 
   def add_content(id: Int) = Action.async { implicit request =>
-    daoGnote.addContent(id).map { p =>
+    ViewDao.addContent(id).map { p =>
       Redirect(routes.gNote.c(id))
     }
   }
 
   def add_directory(id: Int) = Action.async { implicit request =>
     for {
-      newDirId <- daoGnote.addDir(id)
-      dirInfo <- daoGnote.getDir(newDirId)
+      newDirId <- ViewDao.addDir(id)
+      dirInfo <- ViewDao.getDir(newDirId)
     } yield Ok(views.html.note.edit.directory.update_modal(dirInfo.head))
   }
 
   def delete_directory(id: Int) = Action.async {
     for {
-      i <- daoGnote.getDir(id)
-      j <- daoGnote.deleteDir(id)
+      i <- ViewDao.getDir(id)
+      j <- ViewDao.deleteDir(id)
     } yield Redirect(routes.gNote.c(i.head.father_id.getOrElse(0)))
   }
 
-  def get_content(id: Int) = Action.async {
-    daoGnote.getContent(id).map { p =>
-      Ok(views.html.note.edit.content.update_modal(p.head))
-    }
+  def get_content(id: Int) = Action {
+    Ok(views.html.note.edit.content.update_modal(ViewDao.getContentOne(id).head))
   }
 
   def get_category(id: Int) = Action.async {
-    daoGnote.getDir(id).map { p =>
+    ViewDao.getDir(id).map { p =>
       Ok(views.html.note.edit.directory.update_modal(p.head))
     }
   }
 
   def delete_content(id: Int) = Action.async { implicit request =>
     for {
-      j <- daoGnote.getContent(id)
-      i <- daoGnote.deleteContent(id)
-    } yield Redirect(routes.gNote.c(j.head.category_id))
+      i <- ViewDao.deleteContent(id)
+    } yield Redirect(routes.gNote.c(ViewDao.getContent(id).head.category_id))
   }
 
   def update_content = Action.async { implicit request =>
@@ -81,7 +78,7 @@ class gNote @Inject()(daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends
 
     val file_id = if (file_id_par == "") None else Some(file_id_par.toInt)
 
-    daoGnote.updateContent(id, content_1, content_2, document_id, file_id).map { p =>
+    ViewDao.updateContent(id, content_1, content_2, document_id, file_id).map { p =>
       Ok(content_1)
     }
   }
@@ -90,7 +87,7 @@ class gNote @Inject()(daoGnote: DaoGNote)(implicit ec: ExecutionContext) extends
     val pars = request.body.asFormUrlEncoded.get
     val id = pars("dir-update-id-val").head.toInt
     val name = pars("dir-update-name-val").head
-    daoGnote.updateDir(id, name).map { p =>
+    ViewDao.updateDir(id, name).map { p =>
       Ok(name)
     }
   }

@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
-import models.gnote.dao.{DaoGNote, ViewDao}
+import models.gnote.dao.{ ViewDao}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext

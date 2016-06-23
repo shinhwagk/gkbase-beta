@@ -6,10 +6,10 @@ import slick.driver.MySQLDriver.api._
 /**
   * Created by zhangxu on 16/3/14.
   */
-case class Category(id: Int, name: String, father_id: Option[Int], createdate: Date, updatedate: Date)
+case class Category(id: Int, name: String, father_id: Option[Int], createdate: Date, updatedate: Date, state: Int)
 
 class Categorys(tag: Tag) extends Table[Category](tag, "category") {
-  def * = (id, name, father_id.?, createdate, updatedate)<>(Category.tupled, Category.unapply)
+  def * = (id, name, father_id.?, createdate, updatedate, state) <>(Category.tupled, Category.unapply)
 
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
@@ -20,4 +20,6 @@ class Categorys(tag: Tag) extends Table[Category](tag, "category") {
   def createdate = column[Date]("createdate")
 
   def updatedate = column[Date]("updatedate")
+
+  def state = column[Int]("state")
 }

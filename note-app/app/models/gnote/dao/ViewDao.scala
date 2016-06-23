@@ -21,7 +21,7 @@ object ViewDao {
   val tableCategory = TableQuery[Categorys]
   val tableContent = TableQuery[Contents]
 
-  def getDir(id: Int) = db.run(tableCategory.filter(_.id === id).to[List].result)
+  def getDir(id: Int) = db.run(tableCategory.filter(p => p.id === id && p.state =!= 0).to[List].result)
 
   def categoryTree(id: Int): Future[List[Category]] = {
     val bre = new ArrayBuffer[Category]()
@@ -47,7 +47,7 @@ object ViewDao {
 
   //用于左侧目录索引显示，子目录数量和子目录内容数量
   def dirsInfoAndCnt(id: Int): Future[List[(Category, Int, Int)]] = {
-    val a = tableCategory.filter(_.father_id === id)
+    val a = tableCategory.filter(p => p.father_id === id && p.state =!= 0)
 
     val b = tableCategory.filter(_.father_id in (a.map(_.id)))
       .groupBy(_.father_id).map { case (fatid, group) => (fatid, group.length) }
@@ -80,11 +80,11 @@ object ViewDao {
   def addDir(id2: Int) = {
     val seqId = Await.result(db.run(sql"select id from g_note.sequence".as[Int].head), Duration.Inf)
     Await.result(db.run(sqlu"update g_note.sequence set id = id + 1"), Duration.Inf)
-    Await.result(db.run(sqlu"""insert into category values($seqId,"",$id2,${new java.sql.Date(new java.util.Date().getTime)},${new java.sql.Date(new java.util.Date().getTime)})"""), Duration.Inf)
+    Await.result(db.run(sqlu"""insert into category values($seqId,"",$id2,${new java.sql.Date(new java.util.Date().getTime)},${new java.sql.Date(new java.util.Date().getTime)},1)"""), Duration.Inf)
     Future(seqId)
   }
 
-  def deleteDir(id: Int) = db.run(tableCategory.filter(_.id === id).delete)
+  def deleteDir(id: Int) = db.run(tableCategory.filter(_.id === id).map(_.state).update(0))
 
   def getContentCount(did: Int) = db.run(tableContent.filter(_.category_id === did).length.result)
 

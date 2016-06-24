@@ -102,7 +102,7 @@ object ViewDao {
 
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).delete)
 
-  def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int], file_id: Option[Int]) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata)).update(con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime)))
+  def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int], file_id: Option[Int], source: String) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata, c.source)).update(con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime), source))
 
   def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedate)).update(name, new java.sql.Date(new java.util.Date().getTime)))
 

@@ -21,7 +21,6 @@ object ViewDao {
   val tableCategory = TableQuery[Categorys]
   val tableContent = TableQuery[Contents]
 
-  def getDir(id: Int) = db.run(tableCategory.filter(p => p.id === id && p.state =!= 0).to[List].result)
 
   def categoryTree(id: Int): Future[List[Category]] = {
     val bre = new ArrayBuffer[Category]()
@@ -44,7 +43,6 @@ object ViewDao {
 
   def getCategoryTree(id: Int) = Await.result(categoryTree(id), Duration.Inf)
 
-
   //用于左侧目录索引显示，子目录数量和子目录内容数量
   def dirsInfoAndCnt(id: Int): Future[List[(Category, Int, Int)]] = {
     val a = tableCategory.filter(p => p.father_id === id && p.state =!= 0)
@@ -64,9 +62,7 @@ object ViewDao {
 
   def getDirsInfoAndCnt(id: Int): List[(Category, Int, Int)] = Await.result(dirsInfoAndCnt(id), Duration.Inf)
 
-  def content(id: Int) = db.run(tableContent.filter(_.category_id === id).to[List].result)
-
-  def getContent(id: Int): List[Content] = Await.result(content(id), Duration.Inf)
+  def getContent(id: Int): List[Content] = Await.result(db.run(tableContent.filter(_.category_id === id).to[List].result), Duration.Inf)
 
   def getContentOne(id: Int) = Await.result(db.run(tableContent.filter(_.id === id).to[List].result), Duration.Inf)
 
@@ -77,6 +73,8 @@ object ViewDao {
   //目录列表
   def category(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 
+  def getDir(id: Int) = db.run(tableCategory.filter(p => p.id === id && p.state =!= 0).to[List].result)
+
   def addDir(id2: Int) = {
     val seqId = Await.result(db.run(sql"select id from g_note.sequence".as[Int].head), Duration.Inf)
     Await.result(db.run(sqlu"update g_note.sequence set id = id + 1"), Duration.Inf)
@@ -85,6 +83,8 @@ object ViewDao {
   }
 
   def deleteDir(id: Int) = db.run(tableCategory.filter(_.id === id).map(_.state).update(0))
+
+  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedate)).update(name, new java.sql.Date(new java.util.Date().getTime)))
 
   def getContentCount(did: Int) = db.run(tableContent.filter(_.category_id === did).length.result)
 
@@ -104,6 +104,5 @@ object ViewDao {
 
   def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int], file_id: Option[Int], source: String) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata, c.source)).update(con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime), source))
 
-  def updateDir(id: Int, name: String) = db.run(tableCategory.filter(_.id === id).map(c => (c.name, c.updatedate)).update(name, new java.sql.Date(new java.util.Date().getTime)))
 
 }

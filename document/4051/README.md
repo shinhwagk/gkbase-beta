@@ -25,7 +25,7 @@ class aa extends Actor with akka.actor.ActorLogging{
       bb forward "a"
     case "b" =&gt;
       println("aaaaa")
- #class cc的sender 被这里收到
+ //class cc的sender 被这里收到
   }
 }
 

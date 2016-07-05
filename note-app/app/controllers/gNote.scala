@@ -20,7 +20,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
 
   def d(id: Int) = Action { implicit request =>
     val path = play.Configuration.root().getString("note.doc.path")
-    val github_doc_url = s"$path/${id}"
+    val github_doc_url = s"$path/${id}/README.md"
     Redirect(github_doc_url)
   }
 

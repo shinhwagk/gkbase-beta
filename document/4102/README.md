@@ -16,3 +16,4 @@ class G {
     static void gFun2(I f2) {System.out.println(f2.fun1("fff"));}
 }
 ```
+>上述代码在不取消注释的情况下，可以正常运行

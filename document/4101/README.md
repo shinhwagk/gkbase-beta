@@ -26,6 +26,8 @@ public class Test {
         String[] strings = {"c1zzzz", "as", "bcc", "cxxq"};
         Comparator<String> compare =
                 (String first, String second) -> Integer.compare(first.length(), second.length());
+//        Comparator<String> compare =
+//                (first, second) -> Integer.compare(first.length(), second.length());
         Arrays.sort(strings, compare);
         for (String i : strings) {
             System.out.println(i);

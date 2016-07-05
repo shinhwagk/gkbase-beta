@@ -17,4 +17,4 @@ class LengthComparator implements Comparator<String> {
     }
 }
 ```
--　上述代码中ｓｓｓ
+-　上述代码中Array.sort的第二个参数就是以面向对象的方式来传递一段代码，如何来进行排序

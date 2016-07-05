@@ -19,7 +19,7 @@ class LengthComparator implements Comparator<String> {
 ```
 >上述代码中Array.sort的第二个参数就是以面向对象的方式来传递一段代码，如何来进行排序
 
-### java8的方式
+### java8的方式 lambda表达式
 ```java
 public class Test {
     public static void main(String[] args) {
@@ -35,3 +35,4 @@ public class Test {
     }
 }
 ```
+>上述代码同样是传递一段代码给Array.sort的第二个参数，我的理解方式是，说白了第一段代码Comparator.compare这个接口就是传入2个参数，传出一个int，这里的lambda同样做到了这一点，

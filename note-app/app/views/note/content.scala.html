@@ -6,8 +6,13 @@
   @for(c <- ViewDao.getContent(id)){
   <div class="row ">
     <div class="col-lg-1">
-      <pre><a href="aaa">aaa</a></pre>
-      <pre>@c.id</pre>
+      <pre>
+        @if(Test.judgeDoc(c.id)){
+          <a href="@c.id">@c.id</a>
+        }else{
+          @c.id
+        }
+      </pre>
     </div>
     <div class="col-lg-5">
       <pre>@c.content_1</pre>

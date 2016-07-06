@@ -1,7 +1,7 @@
 ```java
 public class Test6 {
     public static void main(String[] args) throws InterruptedException {
-        new A().doWork();
+        new A().doWork();//aaa
         while(true){
             Thread.sleep(1000);
         }

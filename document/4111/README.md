@@ -27,4 +27,5 @@ static void fun(String count, String text){
 #### 自由变量
 >count text就是自由变量
 
+
 > 如果把lambda表达式转换成为一个只含有一个方法的对象，那么自由变量的值就会被复制到该对象的实例变量中。

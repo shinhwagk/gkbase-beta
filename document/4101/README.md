@@ -36,3 +36,5 @@ public class Test {
 ```
 >上述代码同样是传递一段代码给Array.sort的第二个参数，我的理解方式是，说白了第一段代码Comparator.compare这个接口就是传入2个参数，传出一个int，这里的lambda同样做到了这一点。
 >此外Array.sort的第二个参数需要一个Comparator<T>的这么一个类型，在上面这个表达式中变量compare的类型就是Comparator
+
+>Arrays.sort方法会接受一个实现了Comparator<String>接口的类的实例.条用该对象的compare方法会执行lambda表达式中的代码

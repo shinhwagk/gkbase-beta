@@ -39,3 +39,33 @@ interface Named {
      String getName();
 }
 ```
+
+###如果还有集成惨祸在里面会怎么样
+```java
+public class Test6 extends X implements Person, Named {
+    public static void main(String[] args) {
+        System.out.println(new Test6().getName());
+    }
+
+    @Override
+    public String getName() {
+        return X.class.getName();
+    }
+}
+
+interface Person {
+    default String getName() {
+        return "Person";
+    }
+}
+
+interface Named {
+    String getName();
+}
+
+class X {
+    String getName() {
+        return "X";
+    }
+}
+```

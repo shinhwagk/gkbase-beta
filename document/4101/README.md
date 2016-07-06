@@ -10,7 +10,6 @@ public class Test {
 }
 
 class LengthComparator implements Comparator<String> {
-
     @Override
     public int compare(String first, String second) {
         return Integer.compare(first.length(), second.length());

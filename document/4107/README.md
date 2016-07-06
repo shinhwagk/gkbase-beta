@@ -1,6 +1,31 @@
-###对象::实例方法
+###对象::实例方法 && 类::静态方法
 ```java
+@FunctionalInterface
+interface FunItf {
+    void fun(String s);
+}
 
+public class Test3 {
+    public static void main(String[] args) {
+        ImplFun i = new ImplFun();
+        Test3.testFun(i::f1);
+        Test3.testFun(ImplFun::f2);
+    }
+
+    static void testFun(FunItf f) {
+        f.fun("aaaa");
+    }
+}
+
+class ImplFun {
+    void f1(String s) {
+        System.out.println(s);
+    }
+
+    static void f2(String s) {
+        System.out.println(s);
+    }
+}
 ```
 
 

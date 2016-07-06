@@ -1,3 +1,4 @@
+### 类优先原则
 ```java
 public class Test6 extends X implements Person, Named {
     public static void main(String[] args) {

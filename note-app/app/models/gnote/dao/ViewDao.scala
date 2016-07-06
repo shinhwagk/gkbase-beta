@@ -21,7 +21,6 @@ object ViewDao {
   val tableCategory = TableQuery[Categorys]
   val tableContent = TableQuery[Contents]
 
-
   def categoryTree(id: Int): Future[List[Category]] = {
     val bre = new ArrayBuffer[Category]()
     def tree(did: Int): Future[Int] = {
@@ -103,6 +102,4 @@ object ViewDao {
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).delete)
 
   def updateContent(id: Int, con_1: String, con_2: String, document_id: Option[Int], file_id: Option[Int], source: String) = db.run(tableContent.filter(_.id === id).map(c => (c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata, c.source)).update(con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime), source))
-
-
 }

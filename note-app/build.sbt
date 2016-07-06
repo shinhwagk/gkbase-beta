@@ -9,5 +9,6 @@ scalaVersion := "2.11.8"
 libraryDependencies ++= Seq(
   jdbc,
   "mysql" % "mysql-connector-java" % "5.1.38",
-  "com.typesafe.play" %% "play-slick" % "2.0.0"
+  "com.typesafe.play" %% "play-slick" % "2.0.0",
+  "org.apache.httpcomponents" % "httpclient" % "4.5.2"
 )

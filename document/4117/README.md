@@ -4,4 +4,5 @@ public class Test1 {
         Collections.nCopies(12, new Ab1()).forEach(System.out::println);
     }
 }
+class Ab1 {}
 ```

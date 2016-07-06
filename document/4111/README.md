@@ -16,10 +16,8 @@ static void fun(String count, String text){
 
 #### 一段代码
 ```java
-()->{
-    for (int i = 0; i < count; i++){
-      System.out.println(text);
-    }
+  for (int i = 0; i < count; i++){
+    System.out.println(text);
   }
 ```
 #### 参数

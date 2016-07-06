@@ -50,6 +50,7 @@ public class Test6 extends X implements Person, Named {
     @Override
     public String getName() {
         return X.class.getName();
+        //return super.getName(); 这样也可以
     }
 }
 

@@ -188,7 +188,6 @@ function category_delete_exec(id){
             type: "GET",
             url: "/app/note/dir/delete/" + id,
             success: function(msg){
-                alert(11);
                 location.href = "/app/note/id/" + msg
             },
             error: function(error) {

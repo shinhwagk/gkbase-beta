@@ -198,3 +198,19 @@ function category_delete_exec(id){
         });
     }
 }
+function content_delete_exec(id){
+    if (confirm("确认删除..")) {
+        $.ajax({
+            type: "GET",
+            url: "/app/note/content/delete/" + id,
+            success: function(msg){
+                location.href = "/app/note/id/" + msg
+            },
+            error: function(error) {
+                alert(error.status);
+                alert(error.readyState);
+                alert(error.textStatus);
+            },
+        });
+    }
+}

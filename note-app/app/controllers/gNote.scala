@@ -63,7 +63,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
   def delete_content(id: Int) = Action.async { implicit request =>
     for {
       i <- ViewDao.deleteContent(id)
-    } yield Redirect(routes.gNote.c(ViewDao.getContent(id).head.category_id))
+    } yield Ok(ViewDao.getContent(id).head.category_id.toString)
   }
 
   def update_content = Action.async { implicit request =>

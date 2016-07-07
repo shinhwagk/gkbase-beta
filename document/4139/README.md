@@ -1,8 +1,8 @@
 ```java
 public class Test5 {
     public static void main(String[] args) {
-        String[] ss = {"a","f","aa"};
-        Arrays.asList(ss).stream().filter(p->p.length()==1).count();
+        String[] ss = {"a", "f", "aa"};
+        Arrays.asList(ss).stream().filter(p -> p.length() == 1).count();
     }
 }
 ```

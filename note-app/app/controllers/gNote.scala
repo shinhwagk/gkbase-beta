@@ -43,7 +43,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     } yield Ok(views.html.note.edit.directory.update_modal(dirInfo.head))
   }
 
-  def delete_directory(id: Int) = Action.async {
+  def delete_directory(id: Int) = Action.async { implicit request =>
     for {
       i <- ViewDao.getDir(id)
       j <- ViewDao.deleteDir(id)

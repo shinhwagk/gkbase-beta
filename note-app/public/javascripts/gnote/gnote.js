@@ -184,17 +184,18 @@ $(document).ready(function(){
 
 function category_delete_exec(id){
 alert(111)
-//alert(jsRoutes.controllers.gNote.delete_directory(id).url)
-    $.ajax({
-        type: "GET",
-        url: "/app/note/dir/delete/" + id,
-        success: function(msg){
-            alert(11)
-        },
-        error: function(error) {
-            alert(error.status);
-            alert(error.readyState);
-            alert(error.textStatus);
-        },
-    });
+    if (!confirm("确认要删除？")) {
+        $.ajax({
+            type: "GET",
+            url: "/app/note/dir/delete/" + id,
+            success: function(msg){
+                alert(11)
+            },
+            error: function(error) {
+                alert(error.status);
+                alert(error.readyState);
+                alert(error.textStatus);
+            },
+        });
+    }
 }

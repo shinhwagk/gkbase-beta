@@ -181,3 +181,7 @@ $(document).ready(function(){
         alert('adf')
     })
 })
+
+function category_delete_exec(id){
+alert(id)
+}

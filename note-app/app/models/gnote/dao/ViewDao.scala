@@ -61,7 +61,7 @@ object ViewDao {
 
   def getDirsInfoAndCnt(id: Int): List[(Category, Int, Int)] = Await.result(dirsInfoAndCnt(id), Duration.Inf)
 
-  def getContent(did: Int): List[Content] = Await.result(db.run(tableContent.filter(_.category_id === did).to[List].result), Duration.Inf)
+  def getContent(did: Int): List[Content] = Await.result(db.run(tableContent.filter(p => p.category_id === did && p.state === 1).to[List].result), Duration.Inf)
 
   def getContentOne(id: Int) = Await.result(db.run(tableContent.filter(_.id === id).to[List].result), Duration.Inf)
 

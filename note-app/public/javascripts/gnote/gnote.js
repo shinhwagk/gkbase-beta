@@ -198,6 +198,7 @@ function category_delete_exec(id){
         });
     }
 }
+
 function content_delete_exec(id){
     if (confirm("确认删除..")) {
         $.ajax({

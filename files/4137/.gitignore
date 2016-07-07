@@ -1,0 +1,5 @@
+node_modules
+typings
+app/*.map
+app/**/*.js
+.vscode

@@ -189,7 +189,7 @@ function category_delete_exec(id){
             url: "/app/note/dir/delete/" + id,
             success: function(msg){
                 alert(11);
-                location.href = jsRoutes.controllers.gNote.c(msg).url
+                location.href = "/app/note/id/" + msg
             },
             error: function(error) {
                 alert(error.status);

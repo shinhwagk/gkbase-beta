@@ -47,7 +47,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     for {
       i <- ViewDao.getDir(id)
       j <- ViewDao.deleteDir(id)
-    } yield Ok("0")
+    } yield Ok(i.head.father_id.getOrElse(0).toString)
   }
 
   def get_content(id: Int) = Action {

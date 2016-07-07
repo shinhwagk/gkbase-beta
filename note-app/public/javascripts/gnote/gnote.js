@@ -183,13 +183,13 @@ $(document).ready(function(){
 })
 
 function category_delete_exec(id){
-alert(111)
-    if (!confirm("确认要删除？")) {
+    if (confirm("确认删除..")) {
         $.ajax({
             type: "GET",
             url: "/app/note/dir/delete/" + id,
             success: function(msg){
-                alert(11)
+                alert(11);
+                history.go(-1);
             },
             error: function(error) {
                 alert(error.status);

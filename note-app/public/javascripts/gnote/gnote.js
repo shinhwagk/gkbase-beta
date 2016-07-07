@@ -183,6 +183,7 @@ $(document).ready(function(){
 })
 
 function category_delete_exec(id){
+alert(jsRoutes.controllers.gNote.delete_directory(id).url)
     $.ajax({
         type: "GET",
         url: jsRoutes.controllers.gNote.delete_directory(id).url,

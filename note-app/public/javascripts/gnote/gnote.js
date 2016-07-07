@@ -183,5 +183,16 @@ $(document).ready(function(){
 })
 
 function category_delete_exec(id){
-alert(id)
+    $.ajax({
+        type: "GET",
+        url: jsRoutes.controllers.gNote.delete_directory(id).url,
+        success: function(msg){
+            alert(11)
+        },
+        error: function(error) {
+            alert(error.status);
+            alert(error.readyState);
+            alert(error.textStatus);
+        },
+    });
 }

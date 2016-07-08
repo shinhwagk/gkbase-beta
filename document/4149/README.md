@@ -9,6 +9,7 @@ export class AppComponent {
 }
 ```
 
+####例子
 ```typescript
 <img src="{{heroImageUrl}}" style="height:30px">
 ```

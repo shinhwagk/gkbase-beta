@@ -2,10 +2,14 @@
 import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
-  template: '<h1>{{ name }} {{ 1+1 }}</h1>'
+  template: '<h1>{{ name }} {{ 1+1+fun() }}</h1>' //3
 })
 export class AppComponent {
   name ="Jay"
+
+  fun(){
+    return 1
+  }
 }
 ```
 

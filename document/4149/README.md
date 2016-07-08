@@ -8,3 +8,7 @@ export class AppComponent {
   name ="Jay"
 }
 ```
+
+```typescript
+<img src="{{heroImageUrl}}" style="height:30px">
+```

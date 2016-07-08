@@ -87,7 +87,7 @@ object ViewDao {
 
   def getContentCount(did: Int) = db.run(tableContent.filter(_.category_id === did).length.result)
 
-  def getCategoryCount(fid: Int) = db.run(tableCategory.filter(_.father_id === fid).length.result)
+  def getCategoryCount(fid: Int) = db.run(tableCategory.filter(p=>p.father_id === fid && p.state === 1).length.result)
 
   def getCategory(id: Int) = db.run(tableCategory.filter(_.father_id === id).to[List].result)
 

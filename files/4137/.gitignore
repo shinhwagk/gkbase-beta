@@ -1,5 +1,10 @@
-node_modules
-typings
-app/*.map
-app/**/*.js
-.vscode
+/**/*
+!index.html
+!package.json
+!README.md
+!systemjs.config.js
+!tsconfig.json
+!typings.json
+!app/app.component.ts
+!app/main.ts
+!.gitignore

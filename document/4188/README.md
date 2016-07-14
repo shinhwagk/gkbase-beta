@@ -1,0 +1,10 @@
+```typescript
+export class KeyUpComponent_v1 {
+  values = '';
+
+  // with strong typing
+  onKey(event: KeyboardEvent) {
+    this.values += (<HTMLInputElement>event.target).value + ' | ';
+  }
+}
+```

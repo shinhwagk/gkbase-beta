@@ -8,6 +8,8 @@ export class KeyUpComponent_v1 {
   }
 }
 ```
+
+### 强类型版本
 ```typescript
 export class KeyUpComponent_v1 {
   values = '';

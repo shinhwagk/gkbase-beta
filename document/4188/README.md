@@ -20,18 +20,15 @@ export class KeyUpComponent_v1 {
   }
 }
 ```
+
+### 使用模板引用变量
 ```typescript
 @Component({
-  selector: 'key-up2',
+  selector: 'loop-back',
   template: `
-    <input #box (keyup)="onKey(box.value)">
-    <p>{{values}}</p>
+    <input #box (keyup)="0">
+    <p>{{box.value}}</p>
   `
 })
-export class KeyUpComponent_v2 {
-  values = '';
-  onKey(value: string) {
-    this.values += value + ' | ';
-  }
-}
+export class LoopbackComponent { }
 ```

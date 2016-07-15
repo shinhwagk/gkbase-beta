@@ -68,12 +68,13 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
 
   def update_content = Action.async { implicit request =>
     val pars: Map[String, Seq[String]] = request.body.asFormUrlEncoded.get
+    println(request.body.asText)
     println(pars)
     val id = pars("content-update-id-val").head.toInt
     val did = pars("content-update-did-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
-    val document_id_par = pars.get("content-update-docid-val")
+    val document_id_par: Option[Seq[String]] = pars.get("content-update-docid-val")
     println("a" + document_id_par + "b" + document_id_par.size + "cc")
     val file_id_par = pars("content-update-fileid-val").head
     val source = pars("content-update-source-val").head

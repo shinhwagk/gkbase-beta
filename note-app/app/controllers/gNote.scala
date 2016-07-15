@@ -67,7 +67,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
   }
 
   def update_content = Action { implicit request =>
-    val pars: Map[String, Seq[String]] = request.body.asFormUrlEncoded.get
+    val pars: Option[Map[String, Seq[String]]] = request.body.asFormUrlEncoded
     println(request.body.asText)
     println(pars)
     Ok("asdf")

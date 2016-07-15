@@ -1,4 +1,4 @@
-```typescrsipt
+```typescript
 setStyles() {
   let styles = {
     // CSS property names

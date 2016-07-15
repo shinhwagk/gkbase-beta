@@ -1,6 +1,6 @@
 @import models.gnote.dao.entity.Content
 @(c:Content)
-<div class="modal-body"> 
+<div class="modal-body">
         <div class="form-group">
             <label for="content-update-id" class="control-label">Content Id:</label>
             <input name="content-update-id-val" type="text" readonly="readonly" class="form-control"
@@ -31,7 +31,7 @@
                     @if(!@c.document_id.isEmpty){
                     <input name="content-update-docid-val" type="checkbox" id="content-update-docid" checked='checked'>
                     a @c.document_id b
-                    }else{{
+                    }else{
                     <input name="content-update-docid-val" type="checkbox" id="content-update-docid">
                     a @c.document_id b
                     }

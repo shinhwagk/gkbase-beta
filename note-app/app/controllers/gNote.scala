@@ -73,6 +73,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
     val document_id_par = pars.get("content-update-docid-val")
+    println("a" + document_id_par + "b" + document_id_par.size + "cc")
     val file_id_par = pars("content-update-fileid-val").head
     val source = pars("content-update-source-val").head
     val document_id: Option[Int] = if (document_id_par.isEmpty) None else Some(id)

@@ -76,7 +76,7 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     println("a" + document_id_par + "b" + document_id_par.size + "cc")
     val file_id_par = pars("content-update-fileid-val").head
     val source = pars("content-update-source-val").head
-    val document_id = if (document_id_par == "") None else Some(document_id_par)
+    val document_id = Some(0)
     val file_id = if (file_id_par == "") None else Some(file_id_par.toInt)
     ViewDao.updateContent(id, did, content_1, content_2, document_id, file_id, source).map { p =>
       Ok(content_1)

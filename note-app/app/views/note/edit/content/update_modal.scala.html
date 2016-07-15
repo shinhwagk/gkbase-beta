@@ -26,8 +26,13 @@
         </div>
         <div class="form-group">
             <label for="content-update-docid" class="control-label">Douement Id:</label>
-            <input name="content-update-docid-val" type="text" class="form-control" id="content-update-docid"
-                   value="@c.document_id">
+            <!--<input name="content-update-docid-val" type="text" class="form-control" id="content-update-docid"-->
+                   <!--value="@c.document_id">-->
+            <div class="checkbox">
+                <label>
+                    <input name="content-update-docid-val" type="checkbox" id="content-update-docid">@c.document_id
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <label for="content-update-fileid" class="control-label">File Id:</label>

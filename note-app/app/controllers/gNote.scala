@@ -72,7 +72,8 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     val did = pars("content-update-did-val").head.toInt
     val content_1 = pars("content-update-content-1-val").head
     val content_2 = pars("content-update-content-2-val").head
-    val document_id_par = pars("content-update-docid-val").head
+    val document_id_par: String = pars("content-update-docid-val").head
+    println(document_id_par)
     val file_id_par = pars("content-update-fileid-val").head
     val source = pars("content-update-source-val").head
     val document_id = if (document_id_par == "") None else Some(document_id_par.toInt)

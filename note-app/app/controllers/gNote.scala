@@ -66,10 +66,11 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     } yield Ok(ViewDao.getContentOne(id).head.category_id.toString)
   }
 
-  def update_content = Action.async { implicit request =>
+  def update_content = Action { implicit request =>
     val pars: Map[String, Seq[String]] = request.body.asFormUrlEncoded.get
     println(request.body.asText)
     println(pars)
+    Ok("asdf")
 //    val id = pars("content-update-id-val").head.toInt
 //    val did = pars("content-update-did-val").head.toInt
 //    val content_1 = pars("content-update-content-1-val").head

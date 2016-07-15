@@ -29,8 +29,13 @@
             <label for="content-update-docid" class="control-label">Douement Id:</label>
             <div class="checkbox">
                 <label>
-                    <input name="content-update-docid-val" type="checkbox" id="content-update-docid" @if(!@c.document_id.isEmpty){"checked='checked'"} >
-                         a @c.document_id b
+                    @if(!@c.document_id.isEmpty){
+                    <input name="content-update-docid-val" type="checkbox" id="content-update-docid" checked='checked'>
+                    a @c.document_id b
+                    }else{{
+                    <input name="content-update-docid-val" type="checkbox" id="content-update-docid">
+                    a @c.document_id b
+                    }
                 </label>
             </div>
         </div>

@@ -1,0 +1,8 @@
+/**
+!app
+!conf
+!project/build.properties
+!project/plugins.sbt
+!.gitignore
+!build.sbt
+!README.md

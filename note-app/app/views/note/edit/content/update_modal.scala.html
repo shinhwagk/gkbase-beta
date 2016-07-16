@@ -25,18 +25,23 @@
                       name="content-update-content-2-val"
                       rows="6">@c.content_2</textarea>
         </div>
-        <div class="form-group">
-            <label for="content-update-docid" class="control-label">Douement Id:</label>
-            <div class="checkbox">
-                <label>
-                    <input name="content-update-docid-val" type="checkbox" id="content-update-docid">
-                </label>
-            </div>
+        <div class="checkbox">
+            <label for="content-update-docid" class="control-label">
+                @if(c.document_id.get == 0){
+                <input name="content-update-docid-val" type="checkbox" id="content-update-docid">
+                }else{
+                <input name="content-update-docid-val" type="checkbox" id="content-update-docid" checked>
+                } doc
+            </label>
         </div>
-        <div class="form-group">
-            <label for="content-update-fileid" class="control-label">File Id:</label>
-            <input name="content-update-fileid-val" type="text" class="form-control" id="content-update-fileid"
-                   value="@c.file_id">
+        <div class="checkbox">
+            <label for="content-update-fileid" class="control-label">
+                @if(c.file_id.get == 0){
+                <input name="content-update-fileid-val" type="checkbox" id="content-update-fileid">
+                }else{
+                <input name="content-update-fileid-val" type="checkbox" id="content-update-fileid" checked>
+                } file
+            </label>
         </div>
         <div class="form-group">
             <label for="content-update-source" class="control-label">Source List:</label>

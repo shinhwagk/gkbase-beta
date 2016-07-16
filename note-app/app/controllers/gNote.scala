@@ -66,24 +66,23 @@ class gNote @Inject()(implicit ec: ExecutionContext) extends Controller {
     } yield Ok(ViewDao.getContentOne(id).head.category_id.toString)
   }
 
-  def update_content = Action { implicit request =>
-    val pars: Option[Map[String, Seq[String]]] = request.body.asFormUrlEncoded
+  def update_content = Action.async { implicit request =>
+    val pars: Map[String, Seq[String]] = request.body.asFormUrlEncoded.get
     println(request.body.asText)
     println(pars)
-    Ok("asdf")
-//    val id = pars("content-update-id-val").head.toInt
-//    val did = pars("content-update-did-val").head.toInt
-//    val content_1 = pars("content-update-content-1-val").head
-//    val content_2 = pars("content-update-content-2-val").head
-//    val document_id_par: Option[Seq[String]] = pars.get("content-update-docid-val")
-//    println("a" + document_id_par + "b" + document_id_par.size + "cc")
-//    val file_id_par = pars("content-update-fileid-val").head
-//    val source = pars("content-update-source-val").head
-//    val document_id: Option[Int] = if (document_id_par.isEmpty) None else Some(id)
-//    val file_id = if (file_id_par == "") None else Some(file_id_par.toInt)
-//    ViewDao.updateContent(id, did, content_1, content_2, document_id, file_id, source).map { p =>
-//      Ok(content_1)
-//    }
+    val id = pars("content-update-id-val").head.toInt
+    val did = pars("content-update-did-val").head.toInt
+    val content_1 = pars("content-update-content-1-val").head
+    val content_2 = pars("content-update-content-2-val").head
+    val document_id_par: Option[Seq[String]] = pars.get("content-update-docid-val")
+    //    println("a" + document_id_par + "b" + document_id_par.size + "cc")
+    val file_id_par = pars.get("content-update-fileid-val")
+    val source = pars("content-update-source-val").head
+    val document_id: Option[Int] = if (document_id_par.isEmpty) Some(0) else Some(1)
+    val file_id: Option[Int] = if (file_id_par.isEmpty) Some(0) else Some(1)
+    ViewDao.updateContent(id, did, content_1, content_2, document_id, file_id, source).map { p =>
+      Ok(content_1)
+    }
   }
 
   def update_dir = Action.async { implicit request =>

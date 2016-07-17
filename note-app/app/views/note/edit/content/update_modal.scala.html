@@ -27,7 +27,7 @@
         </div>
         <div class="checkbox">
             <label for="content-update-docid" class="control-label">
-                @if(c.document_id.get == 0){
+                @if(c.document_id == 0){
                 <input name="content-update-docid-val" type="checkbox" id="content-update-docid">
                 }else{
                 <input name="content-update-docid-val" type="checkbox" id="content-update-docid" checked>
@@ -36,7 +36,7 @@
         </div>
         <div class="checkbox">
             <label for="content-update-fileid" class="control-label">
-                @if(c.file_id.get == 0){
+                @if(c.file_id == 0){
                 <input name="content-update-fileid-val" type="checkbox" id="content-update-fileid">
                 }else{
                 <input name="content-update-fileid-val" type="checkbox" id="content-update-fileid" checked>

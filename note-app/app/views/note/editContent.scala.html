@@ -8,15 +8,15 @@
   <ul class="dropdown-menu">
     <li>@edit.content.update(con.id)</li>
     <li role="separator" class="divider"></li>
-    @if(con.document_id.get == 0){
+    @if(con.document_id == 0){
     <li class="disabled"><a href="#">文档</a></li>
     }else{
-    <li>@edit.content.document(Some(con.id))</li>
+    <li>@edit.content.document(con.id)</li>
     }
-    @if(con.file_id.get == 0){
+    @if(con.file_id == 0){
     <li class="disabled"><a href="#">文件</a></li>
     }else{
-    <li>@edit.content.file(Some(con.id))</li>
+    <li>@edit.content.file(con.id)</li>
     }
     <li role="separator" class="divider"></li>
     <li>@edit.content.delete(con.id)</li>

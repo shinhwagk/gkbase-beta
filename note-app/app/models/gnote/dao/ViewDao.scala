@@ -101,5 +101,5 @@ object ViewDao {
 
   def deleteContent(id: Int) = db.run(tableContent.filter(_.id === id).map(_.state).update(0))
 
-  def updateContent(id: Int, did: Int, con_1: String, con_2: String, document_id: Option[Int], file_id: Option[Int], source: String) = db.run(tableContent.filter(_.id === id).map(c => (c.category_id, c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata, c.source)).update(did, con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime), source))
+  def updateContent(id: Int, did: Int, con_1: String, con_2: String, document_id: Int, file_id: Int, source: String) = db.run(tableContent.filter(_.id === id).map(c => (c.category_id, c.content_1, c.content_2, c.document_id, c.file_id, c.updatedata, c.source)).update(did, con_1, con_2, document_id, file_id, new java.sql.Date(new java.util.Date().getTime), source))
 }

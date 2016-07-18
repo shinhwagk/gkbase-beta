@@ -94,7 +94,10 @@ object ViewDao {
   def addContent(id: Int) = {
     val seqId = Await.result(db.run(sql"select id from g_note.sequence".as[Int].head), Duration.Inf)
     Await.result(db.run(sqlu"update g_note.sequence set id = id + 1"), Duration.Inf)
-    db.run(sqlu"""insert into content(id,content_1,content_2,category_id,createdata,updatedata) values($seqId,"???","???",$id,${new java.sql.Date(new java.util.Date().getTime)},${new java.sql.Date(new java.util.Date().getTime)})""")
+    db.run(tableContent
+      .map(c => (c.id, c.content_1, c.content_2, c.category_id, c.document_id, c.file_id, c.createdata, c.updatedata, c.state, c.source))
+      +=(seqId, "???", "???", id, 0, 0, new java.sql.Date(new java.util.Date().getTime), new java.sql.Date(new java.util.Date().getTime), 1, " "))
+//    db.run(sqlu"""insert into content(id,content_1,content_2,category_id,createdata,updatedata) values($seqId,"???","???",$id,${new java.sql.Date(new java.util.Date().getTime)},${new java.sql.Date(new java.util.Date().getTime)})""")
   };
 
   def addDirWithContent(id: Int, dirName: String) = db.run(tableContent.map(c => (c.content_1, c.content_2, c.category_id, c.createdata, c.updatedata)) +=(dirName, "???", id, new java.sql.Date(new java.util.Date().getTime), new java.sql.Date(new java.util.Date().getTime)));

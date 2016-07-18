@@ -1,4 +1,7 @@
 ```sbt
+val ngVersion = "2.0.0-rc.4"
+  
+libraryDependencies ++= Seq(
   "org.webjars.npm" % "angular__common" % ngVersion,
   "org.webjars.npm" % "angular__core" % ngVersion,
   "org.webjars.npm" % "angular__http" % ngVersion,
@@ -16,4 +19,5 @@
   "org.webjars.npm" % "bootstrap" % "4.0.0-alpha.2",
   "org.webjars.npm" % "jquery" % "2.2.3",
   "org.webjars.npm" % "tether" % "1.3.2"
+)
 ```

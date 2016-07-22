@@ -7,8 +7,16 @@ export class AuthGuard implements CanActivate {
     console.log('AuthGuard#canActivate called');
     return true;
   }
+  <!--canActivate() {-->
+  <!--  if (false) {-->
+  <!--    return true;-->
+  <!--  }-->
+  <!--  this.router.navigate(['/login']);-->
+  <!--  return false;-->
+  <!--}-->
 }
 ```
+> 守卫需要返回true 和 false
 
 ### 2. 在路由中使用上面定义的守卫
 ```typescript

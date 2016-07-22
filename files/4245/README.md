@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
 },
 ```
 
-### 3. 把守卫加入到appRouterProviders中
+### 3. 把守卫加入到路由器依赖appRouterProviders中
 ```typescript
 export const appRouterProviders = [
   provideRouter(routes),

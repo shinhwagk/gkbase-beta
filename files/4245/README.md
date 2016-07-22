@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 }
 ```
 
-### 2. 在路由中是用上面定义的守卫
+### 2. 在路由中使用上面定义的守卫
 ```typescript
 {
   path: 'admin',

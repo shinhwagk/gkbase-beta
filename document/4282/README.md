@@ -6,4 +6,5 @@
     .buffer(2, OverflowStrategy.backpressure)
     .runWith(Sink.foreach { p => println(p, 2); Thread.sleep(100000) })
 ```
-> 不关是map还是Flow都可以有自己的buffer
+> 不管是map还是Flow都可以有自己的buffer，每个操作步骤称为stage
+> 每个stage的buffer表示自己这部分可以存储elme的数量
